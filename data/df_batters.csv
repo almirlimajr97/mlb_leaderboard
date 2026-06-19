@@ -1,0 +1,481 @@
+season,ref,game_pk,game_date,batting_team,fielding_team,batter,bat_side,batter_split,men_on_base,pitcher,venue,day_night,home_away_batting,PA,AB,H,singles,doubles,triples,HR,RBI,BB,IBB,SO,HBP,SF
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Brooks Lee,L,vs_RHP,Empty,Cal Quantrill,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Brooks Lee,L,vs_RHP,Empty,Cole Winn,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Brooks Lee,L,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,2,2,1,0,0,0,1,3,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Brooks Lee,R,vs_LHP,Empty,Robby Ahlstrom,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Byron Buxton,R,vs_LHP,Empty,Robby Ahlstrom,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Byron Buxton,R,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Byron Buxton,R,vs_RHP,Men_On,Cal Quantrill,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Byron Buxton,R,vs_RHP,Men_On,Jack Leiter,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Josh Bell,L,vs_RHP,Empty,Cole Winn,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Josh Bell,L,vs_RHP,Empty,Peyton Gray,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Josh Bell,L,vs_RHP,Men_On,Cal Quantrill,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Josh Bell,L,vs_RHP,Men_On,Jack Leiter,Globe Life Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Josh Bell,L,vs_RHP,RISP,Jack Leiter,Globe Life Field,day,away,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Kody Clemens,L,vs_RHP,Empty,Cal Quantrill,Globe Life Field,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Kody Clemens,L,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Kody Clemens,L,vs_RHP,Empty,Peyton Gray,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Kody Clemens,L,vs_RHP,RISP,Jack Leiter,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Luke Keaschall,R,vs_LHP,RISP,Robby Ahlstrom,Globe Life Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Luke Keaschall,R,vs_RHP,Men_On,Cal Quantrill,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Luke Keaschall,R,vs_RHP,Men_On,Jack Leiter,Globe Life Field,day,away,2,1,1,1,0,0,0,0,1,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Royce Lewis,R,vs_RHP,Empty,Cal Quantrill,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Royce Lewis,R,vs_RHP,Empty,Cole Winn,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Royce Lewis,R,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Royce Lewis,R,vs_RHP,Empty,Peyton Gray,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Royce Lewis,R,vs_RHP,RISP,Jack Leiter,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Ryan Kreidler,R,vs_LHP,Men_On,Robby Ahlstrom,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Ryan Kreidler,R,vs_RHP,Empty,Cal Quantrill,Globe Life Field,day,away,1,1,1,0,0,0,1,2,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Trevor Larnach,L,vs_LHP,RISP,Robby Ahlstrom,Globe Life Field,day,away,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Trevor Larnach,L,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,2,2,1,0,0,0,1,2,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Trevor Larnach,L,vs_RHP,Men_On,Cal Quantrill,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Trevor Larnach,L,vs_RHP,Men_On,Jack Leiter,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Tristan Gray,L,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Victor Caratini,L,vs_RHP,Empty,Jack Leiter,Globe Life Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Victor Caratini,L,vs_RHP,Men_On,Cal Quantrill,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Victor Caratini,L,vs_RHP,Men_On,Jack Leiter,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Minnesota Twins,Texas Rangers,Victor Caratini,R,vs_LHP,Men_On,Robby Ahlstrom,Globe Life Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Alejandro Osuna,L,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Brandon Nimmo,L,vs_RHP,Empty,Cody Laweryson,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Brandon Nimmo,L,vs_RHP,Empty,Eric Orze,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Brandon Nimmo,L,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Brandon Nimmo,L,vs_RHP,Empty,Justin Lawrence,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Brandon Nimmo,L,vs_RHP,Men_On,Joe Ryan,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Cody Freeman,R,vs_LHP,Empty,Taylor Rogers,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Cody Freeman,R,vs_RHP,Empty,Cody Laweryson,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Ezequiel Duran,R,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Ezequiel Duran,R,vs_RHP,Empty,Justin Lawrence,Globe Life Field,day,home,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Ezequiel Duran,R,vs_RHP,Men_On,Joe Ryan,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Jake Burger,R,vs_RHP,Empty,Eric Orze,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Jake Burger,R,vs_RHP,Empty,Justin Lawrence,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Jake Burger,R,vs_RHP,Men_On,Joe Ryan,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Jake Burger,R,vs_RHP,RISP,Joe Ryan,Globe Life Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Joc Pederson,L,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,3,3,0,0,0,0,0,0,0,0,3,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Jung,R,vs_RHP,Empty,Andrew Morris,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Jung,R,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Jung,R,vs_RHP,Men_On,Cody Laweryson,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Jung,R,vs_RHP,Men_On,Joe Ryan,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Smith,L,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Smith,L,vs_RHP,Empty,Justin Lawrence,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Smith,L,vs_RHP,Men_On,Joe Ryan,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Josh Smith,L,vs_RHP,RISP,Eric Orze,Globe Life Field,day,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Justin Foscue,R,vs_LHP,RISP,Taylor Rogers,Globe Life Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Justin Foscue,R,vs_RHP,Empty,Cody Laweryson,Globe Life Field,day,home,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Kyle Higashioka,R,vs_LHP,Men_On,Taylor Rogers,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Kyle Higashioka,R,vs_RHP,Empty,Cody Laweryson,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Kyle Higashioka,R,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Nicky Lopez,L,vs_RHP,Men_On,Eric Orze,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Wyatt Langford,R,vs_RHP,Empty,Eric Orze,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Wyatt Langford,R,vs_RHP,Empty,Joe Ryan,Globe Life Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Wyatt Langford,R,vs_RHP,Empty,Justin Lawrence,Globe Life Field,day,home,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Wyatt Langford,R,vs_RHP,RISP,Cody Laweryson,Globe Life Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,822889,2026-06-18,Texas Rangers,Minnesota Twins,Wyatt Langford,R,vs_RHP,RISP,Joe Ryan,Globe Life Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Adley Rutschman,L,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Adley Rutschman,L,vs_RHP,Men_On,Andrés Muñoz,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Blaze Alexander,R,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Blaze Alexander,R,vs_RHP,RISP,Eduard Bazardo,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Colton Cowser,L,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Colton Cowser,L,vs_RHP,Men_On,Bryan Woo,T-Mobile Park,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Colton Cowser,L,vs_RHP,RISP,Bryan Woo,T-Mobile Park,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Gunnar Henderson,L,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Gunnar Henderson,L,vs_RHP,Men_On,Andrés Muñoz,T-Mobile Park,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Jackson Holliday,L,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Jackson Holliday,L,vs_RHP,RISP,Bryan Woo,T-Mobile Park,day,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Jackson Holliday,L,vs_RHP,RISP,Eduard Bazardo,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Leody Taveras,L,vs_RHP,Empty,Andrés Muñoz,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Leody Taveras,L,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Leody Taveras,L,vs_RHP,Men_On,Bryan Woo,T-Mobile Park,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Pete Alonso,R,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Pete Alonso,R,vs_RHP,RISP,Andrés Muñoz,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Samuel Basallo,L,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,3,3,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Samuel Basallo,L,vs_RHP,RISP,Andrés Muñoz,T-Mobile Park,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Taylor Ward,R,vs_RHP,Empty,Bryan Woo,T-Mobile Park,day,away,3,3,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Baltimore Orioles,Seattle Mariners,Taylor Ward,R,vs_RHP,Empty,Eduard Bazardo,T-Mobile Park,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Cal Raleigh,L,vs_RHP,Empty,Rico Garcia,T-Mobile Park,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Cal Raleigh,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,2,2,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Cal Raleigh,L,vs_RHP,RISP,Shane Baz,T-Mobile Park,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Cole Young,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Cole Young,L,vs_RHP,RISP,Shane Baz,T-Mobile Park,day,home,1,1,1,0,1,0,0,1,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Colt Emerson,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Colt Emerson,L,vs_RHP,Men_On,Shane Baz,T-Mobile Park,day,home,2,1,1,1,0,0,0,2,1,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Dominic Canzone,L,vs_RHP,Empty,Rico Garcia,T-Mobile Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Dominic Canzone,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Dominic Canzone,L,vs_RHP,RISP,Shane Baz,T-Mobile Park,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,J.P. Crawford,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,3,3,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,J.P. Crawford,L,vs_RHP,RISP,Shane Baz,T-Mobile Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Josh Naylor,L,vs_RHP,Empty,Rico Garcia,T-Mobile Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Josh Naylor,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Josh Naylor,L,vs_RHP,RISP,Shane Baz,T-Mobile Park,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Miles Mastrobuoni,L,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Miles Mastrobuoni,L,vs_RHP,RISP,Shane Baz,T-Mobile Park,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Mitch Garver,R,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Victor Robles,R,vs_RHP,Empty,Shane Baz,T-Mobile Park,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823125,2026-06-18,Seattle Mariners,Baltimore Orioles,Victor Robles,R,vs_RHP,Men_On,Shane Baz,T-Mobile Park,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,A.J. Ewing,L,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,A.J. Ewing,L,vs_RHP,RISP,Aaron Nola,Citizens Bank Park,night,away,2,2,2,1,1,0,0,1,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Bo Bichette,R,vs_LHP,Men_On,José Alvarado,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Bo Bichette,R,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,3,3,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Bo Bichette,R,vs_RHP,Empty,Bryse Wilson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Brett Baty,L,vs_LHP,Empty,José Alvarado,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Brett Baty,L,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Brett Baty,L,vs_RHP,Empty,Seth Johnson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Carson Benge,L,vs_LHP,Men_On,José Alvarado,Citizens Bank Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Carson Benge,L,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Carson Benge,L,vs_RHP,RISP,Aaron Nola,Citizens Bank Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Carson Benge,L,vs_RHP,RISP,Bryse Wilson,Citizens Bank Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Eric Wagaman,R,vs_LHP,RISP,José Alvarado,Citizens Bank Park,night,away,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Francisco Alvarez,R,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Francisco Alvarez,R,vs_RHP,Empty,Seth Johnson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Francisco Alvarez,R,vs_RHP,Men_On,Aaron Nola,Citizens Bank Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Francisco Alvarez,R,vs_RHP,Men_On,Bryse Wilson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Jared Young,L,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Jared Young,L,vs_RHP,Men_On,Aaron Nola,Citizens Bank Park,night,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Juan Soto,L,vs_LHP,Men_On,José Alvarado,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Juan Soto,L,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,2,2,2,0,0,0,2,2,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Juan Soto,L,vs_RHP,Empty,Bryse Wilson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Juan Soto,L,vs_RHP,Men_On,Aaron Nola,Citizens Bank Park,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,MJ Melendez,L,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,2,2,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,MJ Melendez,L,vs_RHP,Empty,Seth Johnson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,MJ Melendez,L,vs_RHP,Men_On,Bryse Wilson,Citizens Bank Park,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Marcus Semien,R,vs_LHP,RISP,José Alvarado,Citizens Bank Park,night,away,1,1,1,0,0,1,0,2,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Marcus Semien,R,vs_RHP,Empty,Aaron Nola,Citizens Bank Park,night,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Marcus Semien,R,vs_RHP,Men_On,Aaron Nola,Citizens Bank Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Mark Vientos,R,vs_LHP,RISP,José Alvarado,Citizens Bank Park,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Mark Vientos,R,vs_RHP,Empty,Bryse Wilson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,New York Mets,Philadelphia Phillies,Zack Short,R,vs_RHP,Empty,Bryse Wilson,Citizens Bank Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Alec Bohm,R,vs_LHP,Empty,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Alec Bohm,R,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,2,2,2,1,1,0,0,2,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Alec Bohm,R,vs_RHP,Empty,Luke Weaver,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Brandon Marsh,L,vs_LHP,Empty,Sean Manaea,Citizens Bank Park,night,home,3,3,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Brandon Marsh,L,vs_RHP,Empty,Luke Weaver,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryce Harper,L,vs_LHP,Men_On,Sean Manaea,Citizens Bank Park,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryce Harper,L,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryce Harper,L,vs_RHP,Empty,Luke Weaver,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryson Stott,L,vs_LHP,Men_On,Sean Manaea,Citizens Bank Park,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryson Stott,L,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryson Stott,L,vs_RHP,Empty,Huascar Brazobán,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Bryson Stott,L,vs_RHP,Men_On,Devin Williams,Citizens Bank Park,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Derek Hill,R,vs_LHP,Empty,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Derek Hill,R,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Derek Hill,R,vs_RHP,Men_On,Huascar Brazobán,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Edmundo Sosa,R,vs_LHP,Empty,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Edmundo Sosa,R,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,1,1,1,0,0,1,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Edmundo Sosa,R,vs_RHP,Empty,Devin Williams,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Edmundo Sosa,R,vs_RHP,Empty,Huascar Brazobán,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Gabriel Rincones Jr.,L,vs_RHP,RISP,Devin Williams,Citizens Bank Park,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,J.T. Realmuto,R,vs_LHP,Men_On,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,J.T. Realmuto,R,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,J.T. Realmuto,R,vs_RHP,Men_On,Devin Williams,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,J.T. Realmuto,R,vs_RHP,Men_On,Huascar Brazobán,Citizens Bank Park,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Justin Crawford,L,vs_LHP,Empty,Sean Manaea,Citizens Bank Park,night,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Justin Crawford,L,vs_LHP,Men_On,A.J. Minter,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Justin Crawford,L,vs_RHP,RISP,Devin Williams,Citizens Bank Park,night,home,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Kyle Schwarber,L,vs_LHP,Empty,A.J. Minter,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Kyle Schwarber,L,vs_LHP,Empty,Sean Manaea,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Kyle Schwarber,L,vs_LHP,RISP,Sean Manaea,Citizens Bank Park,night,home,2,2,1,1,0,0,0,0,0,0,1,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Kyle Schwarber,L,vs_RHP,Empty,Devin Williams,Citizens Bank Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823448,2026-06-18,Philadelphia Phillies,New York Mets,Trea Turner,R,vs_LHP,Men_On,Sean Manaea,Citizens Bank Park,night,home,1,0,0,0,0,0,0,0,0,0,0,1,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Andrew Benintendi,L,vs_RHP,Empty,Camilo Doval,Yankee Stadium,night,away,1,1,1,0,0,0,1,4,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Braden Montgomery,L,vs_RHP,Empty,Camilo Doval,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Braden Montgomery,L,vs_RHP,Empty,Fernando Cruz,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Braden Montgomery,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Chase Meidroth,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,2,2,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Chase Meidroth,R,vs_LHP,Loaded,Tim Hill,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Chase Meidroth,R,vs_LHP,Men_On,Ryan Weathers,Yankee Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Colson Montgomery,L,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,2,2,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Colson Montgomery,L,vs_LHP,Men_On,Ryan Weathers,Yankee Stadium,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Colson Montgomery,L,vs_RHP,Men_On,Camilo Doval,Yankee Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Edgar Quero,L,vs_RHP,Empty,Camilo Doval,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Edgar Quero,L,vs_RHP,Men_On,Fernando Cruz,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Edgar Quero,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Jacob Gonzalez,L,vs_LHP,RISP,Tim Hill,Yankee Stadium,night,away,1,0,0,0,0,0,0,0,0,0,0,1,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Jacob Gonzalez,L,vs_RHP,Empty,Camilo Doval,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Junior Perez,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Luisangel Acuña,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Luisangel Acuña,R,vs_LHP,Men_On,Ryan Weathers,Yankee Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Miguel Vargas,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,3,3,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Miguel Vargas,R,vs_RHP,Empty,Camilo Doval,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Randal Grichuk,R,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,3,3,0,0,0,0,0,0,0,0,3,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Sam Antonacci,L,vs_RHP,Empty,Camilo Doval,Yankee Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Sam Antonacci,L,vs_RHP,RISP,Fernando Cruz,Yankee Stadium,night,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Tristan Peters,L,vs_LHP,Empty,Ryan Weathers,Yankee Stadium,night,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,Chicago White Sox,New York Yankees,Tristan Peters,L,vs_LHP,Loaded,Tim Hill,Yankee Stadium,night,away,1,0,0,0,0,0,0,0,0,0,0,1,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Anthony Volpe,R,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Anthony Volpe,R,vs_RHP,Men_On,Sean Burke,Yankee Stadium,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Ben Rice,L,vs_LHP,Empty,Bryan Hudson,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Ben Rice,L,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Ben Rice,L,vs_RHP,Men_On,Sean Burke,Yankee Stadium,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Cody Bellinger,L,vs_LHP,Empty,Bryan Hudson,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Cody Bellinger,L,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Cody Bellinger,L,vs_RHP,Men_On,Sean Burke,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,J.C. Escarra,L,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,3,3,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Jasson Domínguez,L,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Jasson Domínguez,R,vs_LHP,Empty,Bryan Hudson,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Jazz Chisholm Jr.,L,vs_LHP,Empty,Bryan Hudson,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,José Caballero,R,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,2,2,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,José Caballero,R,vs_RHP,RISP,Sean Burke,Yankee Stadium,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Paul Goldschmidt,R,vs_LHP,Empty,Bryan Hudson,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Paul Goldschmidt,R,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Paul Goldschmidt,R,vs_RHP,Men_On,Sean Burke,Yankee Stadium,night,home,2,2,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Ryan McMahon,L,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,3,3,1,0,0,0,1,1,0,0,1,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Spencer Jones,L,vs_LHP,RISP,Bryan Hudson,Yankee Stadium,night,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823533,2026-06-18,New York Yankees,Chicago White Sox,Spencer Jones,L,vs_RHP,Empty,Sean Burke,Yankee Stadium,night,home,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Austin Hedges,R,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Austin Hedges,R,vs_LHP,RISP,Drew Rom,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Austin Hedges,R,vs_RHP,Empty,Grant Anderson,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Brayan Rocchio,L,vs_RHP,RISP,Craig Yoho,American Family Field,day,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Brayan Rocchio,L,vs_RHP,RISP,Grant Anderson,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Brayan Rocchio,R,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Brayan Rocchio,R,vs_LHP,Men_On,Shane Drohan,American Family Field,day,away,2,2,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Daniel Schneemann,L,vs_LHP,Empty,Drew Rom,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Daniel Schneemann,L,vs_RHP,Men_On,Grant Anderson,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,David Fry,R,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,2,2,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,David Fry,R,vs_LHP,Men_On,Shane Drohan,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Gabriel Arias,R,vs_LHP,Empty,Drew Rom,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Gabriel Arias,R,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Gabriel Arias,R,vs_LHP,RISP,Shane Drohan,American Family Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Gabriel Arias,R,vs_RHP,Empty,Craig Yoho,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Gabriel Arias,R,vs_RHP,Empty,Joel Kuhnel,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kahlil Watson,L,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kahlil Watson,L,vs_LHP,Men_On,Drew Rom,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kahlil Watson,L,vs_LHP,RISP,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kahlil Watson,L,vs_RHP,Empty,Joel Kuhnel,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kyle Manzardo,L,vs_LHP,Loaded,Drew Rom,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kyle Manzardo,L,vs_LHP,Men_On,Shane Drohan,American Family Field,day,away,1,0,0,0,0,0,0,0,0,0,0,1,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kyle Manzardo,L,vs_LHP,RISP,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kyle Manzardo,L,vs_RHP,Empty,Joel Kuhnel,American Family Field,day,away,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Kyle Manzardo,L,vs_RHP,RISP,Craig Yoho,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Rhys Hoskins,R,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Rhys Hoskins,R,vs_LHP,RISP,Shane Drohan,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Rhys Hoskins,R,vs_RHP,Empty,Joel Kuhnel,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Rhys Hoskins,R,vs_RHP,RISP,Craig Yoho,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Rhys Hoskins,R,vs_RHP,RISP,Grant Anderson,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Steven Kwan,L,vs_LHP,Men_On,Drew Rom,American Family Field,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Steven Kwan,L,vs_RHP,Men_On,Joel Kuhnel,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Stuart Fairchild,R,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Stuart Fairchild,R,vs_LHP,RISP,Shane Drohan,American Family Field,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Travis Bazzana,L,vs_LHP,Empty,Shane Drohan,American Family Field,day,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Travis Bazzana,L,vs_LHP,Men_On,Shane Drohan,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Travis Bazzana,L,vs_LHP,RISP,Drew Rom,American Family Field,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Cleveland Guardians,Milwaukee Brewers,Travis Bazzana,L,vs_RHP,Empty,Grant Anderson,American Family Field,day,away,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Andrew Vaughn,R,vs_LHP,Empty,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Andrew Vaughn,R,vs_LHP,Men_On,Parker Messick,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Andrew Vaughn,R,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,0,0,0,0,0,0,0,0,1,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Andrew Vaughn,R,vs_RHP,Empty,Colin Holderman,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Andrew Vaughn,R,vs_RHP,Men_On,Cade Smith,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Blake Perkins,R,vs_LHP,Empty,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Blake Perkins,R,vs_LHP,RISP,Parker Messick,American Family Field,day,home,2,2,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Brice Turang,L,vs_LHP,Empty,Parker Messick,American Family Field,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Brice Turang,L,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Brice Turang,L,vs_RHP,Empty,Cade Smith,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Brice Turang,L,vs_RHP,Loaded,Colin Holderman,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Christian Yelich,L,vs_LHP,Empty,Parker Messick,American Family Field,day,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Christian Yelich,L,vs_LHP,Men_On,Tim Herrin,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Christian Yelich,L,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Christian Yelich,L,vs_RHP,Empty,Cade Smith,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Cooper Pratt,R,vs_LHP,Men_On,Tim Herrin,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Cooper Pratt,R,vs_LHP,RISP,Parker Messick,American Family Field,day,home,2,1,0,0,0,0,0,1,0,0,1,0,1
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Cooper Pratt,R,vs_RHP,RISP,Hunter Gaddis,American Family Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Garrett Mitchell,L,vs_RHP,Men_On,Hunter Gaddis,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Gary Sánchez,R,vs_LHP,Empty,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Gary Sánchez,R,vs_LHP,Men_On,Parker Messick,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Gary Sánchez,R,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Gary Sánchez,R,vs_RHP,Men_On,Hunter Gaddis,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jackson Chourio,R,vs_LHP,Empty,Parker Messick,American Family Field,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jackson Chourio,R,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jackson Chourio,R,vs_RHP,Empty,Cade Smith,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jackson Chourio,R,vs_RHP,RISP,Colin Holderman,American Family Field,day,home,1,0,0,0,0,0,0,0,0,0,0,1,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jake Bauers,L,vs_LHP,Empty,Parker Messick,American Family Field,day,home,2,2,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jake Bauers,L,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jake Bauers,L,vs_RHP,Empty,Cade Smith,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Jake Bauers,L,vs_RHP,Men_On,Hunter Gaddis,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Joey Ortiz,R,vs_LHP,Empty,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Joey Ortiz,R,vs_LHP,Empty,Tim Herrin,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,Joey Ortiz,R,vs_LHP,RISP,Parker Messick,American Family Field,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,823772,2026-06-18,Milwaukee Brewers,Cleveland Guardians,William Contreras,R,vs_RHP,Loaded,Cade Smith,American Family Field,day,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Bobby Witt Jr.,R,vs_LHP,Empty,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Bobby Witt Jr.,R,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Carter Jensen,L,vs_LHP,Empty,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Carter Jensen,L,vs_LHP,RISP,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Carter Jensen,L,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,0,1,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Carter Jensen,L,vs_RHP,Empty,Gordon Graceffo,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Carter Jensen,L,vs_RHP,RISP,Gordon Graceffo,Kauffman Stadium,night,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Isaac Collins,L,vs_RHP,RISP,Gordon Graceffo,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Isaac Collins,L,vs_RHP,RISP,Max Rajcic,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Isaac Collins,R,vs_LHP,Empty,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Isaac Collins,R,vs_LHP,Men_On,Justin Bruihl,Kauffman Stadium,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Isaac Collins,R,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,0,1,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Jac Caglianone,L,vs_LHP,Empty,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Jac Caglianone,L,vs_LHP,Empty,Matthew Liberatore,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Jac Caglianone,L,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Jac Caglianone,L,vs_RHP,Empty,Gordon Graceffo,Kauffman Stadium,night,home,1,1,1,0,0,0,1,2,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Jac Caglianone,L,vs_RHP,Empty,Max Rajcic,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Lane Thomas,R,vs_LHP,Empty,Matthew Liberatore,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Lane Thomas,R,vs_LHP,Men_On,Justin Bruihl,Kauffman Stadium,night,home,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Lane Thomas,R,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,0,1,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Lane Thomas,R,vs_RHP,Empty,Gordon Graceffo,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Lane Thomas,R,vs_RHP,Empty,Max Rajcic,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Michael Massey,L,vs_LHP,RISP,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Michael Massey,L,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Michael Massey,L,vs_RHP,Empty,Max Rajcic,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Michael Massey,L,vs_RHP,RISP,Gordon Graceffo,Kauffman Stadium,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Nick Loftin,R,vs_LHP,Empty,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Nick Loftin,R,vs_LHP,RISP,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Nick Loftin,R,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Nick Loftin,R,vs_RHP,RISP,Gordon Graceffo,Kauffman Stadium,night,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Nick Loftin,R,vs_RHP,RISP,Max Rajcic,Kauffman Stadium,night,home,1,1,1,0,1,0,0,2,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Salvador Perez,R,vs_LHP,RISP,Justin Bruihl,Kauffman Stadium,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Salvador Perez,R,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Salvador Perez,R,vs_RHP,Empty,Gordon Graceffo,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Salvador Perez,R,vs_RHP,Empty,Max Rajcic,Kauffman Stadium,night,home,1,1,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Salvador Perez,R,vs_RHP,Men_On,Gordon Graceffo,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Starling Marte,R,vs_LHP,Empty,Matthew Liberatore,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Starling Marte,R,vs_LHP,Men_On,Justin Bruihl,Kauffman Stadium,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Starling Marte,R,vs_LHP,RISP,Matthew Liberatore,Kauffman Stadium,night,home,1,1,1,0,1,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Starling Marte,R,vs_RHP,Empty,Max Rajcic,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Starling Marte,R,vs_RHP,Men_On,Gordon Graceffo,Kauffman Stadium,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Tyler Tolbert,R,vs_LHP,Men_On,Justin Bruihl,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Tyler Tolbert,R,vs_RHP,Empty,Max Rajcic,Kauffman Stadium,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,Kansas City Royals,St. Louis Cardinals,Tyler Tolbert,R,vs_RHP,Men_On,Gordon Graceffo,Kauffman Stadium,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Alec Burleson,L,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Alec Burleson,L,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,2,1,0,0,0,0,0,1,0,0,0,0,1
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Alec Burleson,L,vs_RHP,Empty,Mason Black,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Alec Burleson,L,vs_RHP,RISP,Beck Way,Kauffman Stadium,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Blaze Jordan,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Blaze Jordan,R,vs_LHP,Men_On,Noah Cameron,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Blaze Jordan,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Blaze Jordan,R,vs_RHP,Loaded,Beck Way,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Blaze Jordan,R,vs_RHP,RISP,Mason Black,Kauffman Stadium,night,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Iván Herrera,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Iván Herrera,R,vs_LHP,Loaded,Noah Cameron,Kauffman Stadium,night,away,1,0,0,0,0,0,0,0,0,0,0,1,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Iván Herrera,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Iván Herrera,R,vs_RHP,Empty,Mason Black,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Iván Herrera,R,vs_RHP,Men_On,Beck Way,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Iván Herrera,R,vs_RHP,Men_On,Mason Black,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,JJ Wetherholt,L,vs_LHP,Men_On,Noah Cameron,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,JJ Wetherholt,L,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,2,2,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,JJ Wetherholt,L,vs_RHP,Men_On,Beck Way,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,JJ Wetherholt,L,vs_RHP,Men_On,Mason Black,Kauffman Stadium,night,away,2,0,0,0,0,0,0,0,2,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Jimmy Crooks,L,vs_RHP,Empty,Beck Way,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Jordan Walker,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Jordan Walker,R,vs_LHP,Loaded,Noah Cameron,Kauffman Stadium,night,away,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Jordan Walker,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Jordan Walker,R,vs_RHP,Men_On,Beck Way,Kauffman Stadium,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Jordan Walker,R,vs_RHP,RISP,Mason Black,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,José Fermín,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,José Fermín,R,vs_LHP,Men_On,Noah Cameron,Kauffman Stadium,night,away,1,1,1,1,0,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,José Fermín,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,José Fermín,R,vs_RHP,Empty,Beck Way,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,José Fermín,R,vs_RHP,RISP,Mason Black,Kauffman Stadium,night,away,1,1,0,0,0,0,0,1,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Masyn Winn,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Masyn Winn,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,2,2,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Masyn Winn,R,vs_RHP,Loaded,Beck Way,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Masyn Winn,R,vs_RHP,Men_On,Mason Black,Kauffman Stadium,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Nelson Velázquez,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Nelson Velázquez,R,vs_LHP,Loaded,Noah Cameron,Kauffman Stadium,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Nelson Velázquez,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Nelson Velázquez,R,vs_RHP,Men_On,Beck Way,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Nelson Velázquez,R,vs_RHP,RISP,Mason Black,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Pedro Pagés,R,vs_LHP,Empty,Noah Cameron,Kauffman Stadium,night,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Pedro Pagés,R,vs_LHP,RISP,Noah Cameron,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Pedro Pagés,R,vs_RHP,Empty,Beck Way,Kauffman Stadium,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824098,2026-06-18,St. Louis Cardinals,Kansas City Royals,Pedro Pagés,R,vs_RHP,Empty,Mason Black,Kauffman Stadium,night,away,1,0,0,0,0,0,0,1,0,0,0,0,1
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Andruw Monasterio,R,vs_RHP,Empty,Tommy Nance,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Andruw Monasterio,R,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Caleb Durbin,R,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,3,3,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Ceddanne Rafaela,R,vs_RHP,Empty,Tommy Nance,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Ceddanne Rafaela,R,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Ceddanne Rafaela,R,vs_RHP,RISP,Trey Yesavage,Fenway Park,day,home,2,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Connor Wong,R,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,3,3,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Isiah Kiner-Falefa,R,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,3,3,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Jarren Duran,L,vs_LHP,Empty,Mason Fluharty,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Jarren Duran,L,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,3,3,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Mickey Gasper,L,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Mickey Gasper,L,vs_RHP,Men_On,Tommy Nance,Fenway Park,day,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Mickey Gasper,L,vs_RHP,RISP,Trey Yesavage,Fenway Park,day,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Willson Contreras,R,vs_LHP,Empty,Mason Fluharty,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Willson Contreras,R,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,3,3,0,0,0,0,0,1,0,0,1,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Wilyer Abreu,L,vs_LHP,Empty,Mason Fluharty,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Wilyer Abreu,L,vs_RHP,Empty,Trey Yesavage,Fenway Park,day,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Boston Red Sox,Toronto Blue Jays,Wilyer Abreu,L,vs_RHP,RISP,Trey Yesavage,Fenway Park,day,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Andrés Giménez,L,vs_LHP,Empty,Aroldis Chapman,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Andrés Giménez,L,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Andrés Giménez,L,vs_RHP,Men_On,Sonny Gray,Fenway Park,day,away,1,0,0,0,0,0,0,1,0,0,0,0,1
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Brandon Valenzuela,L,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Brandon Valenzuela,L,vs_RHP,RISP,Sonny Gray,Fenway Park,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Brandon Valenzuela,R,vs_LHP,RISP,Aroldis Chapman,Fenway Park,day,away,1,1,1,0,1,0,0,1,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Ernie Clement,R,vs_LHP,Men_On,Aroldis Chapman,Fenway Park,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Ernie Clement,R,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Ernie Clement,R,vs_RHP,Men_On,Sonny Gray,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,George Springer,R,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,George Springer,R,vs_RHP,Men_On,Justin Slaten,Fenway Park,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,George Springer,R,vs_RHP,RISP,Sonny Gray,Fenway Park,day,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Jesús Sánchez,L,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Jesús Sánchez,L,vs_RHP,Men_On,Justin Slaten,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Jesús Sánchez,L,vs_RHP,Men_On,Sonny Gray,Fenway Park,day,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Kazuma Okamoto,R,vs_LHP,Men_On,Aroldis Chapman,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Kazuma Okamoto,R,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Kazuma Okamoto,R,vs_RHP,RISP,Sonny Gray,Fenway Park,day,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Nathan Lukes,L,vs_LHP,Men_On,Aroldis Chapman,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Nathan Lukes,L,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,4,4,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Vladimir Guerrero Jr.,R,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,3,3,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Vladimir Guerrero Jr.,R,vs_RHP,Men_On,Justin Slaten,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Yohendrick Piñango,L,vs_RHP,Empty,Justin Slaten,Fenway Park,day,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Yohendrick Piñango,L,vs_RHP,Empty,Sonny Gray,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Yohendrick Piñango,L,vs_RHP,Men_On,Sonny Gray,Fenway Park,day,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824748,2026-06-18,Toronto Blue Jays,Boston Red Sox,Yohendrick Piñango,L,vs_RHP,RISP,Sonny Gray,Fenway Park,day,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Carlos Cortes,L,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Carlos Cortes,L,vs_RHP,Men_On,Ryan Zeferjahn,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Carlos Cortes,L,vs_RHP,RISP,Ryan Johnson,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Henry Bolte,R,vs_LHP,Empty,Brent Suter,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Henry Bolte,R,vs_RHP,Men_On,Ryan Johnson,Sutter Health Park,night,home,2,1,1,1,0,0,0,1,0,0,0,0,1
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Henry Bolte,R,vs_RHP,RISP,Ryan Zeferjahn,Sutter Health Park,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jacob Wilson,R,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jacob Wilson,R,vs_RHP,Men_On,Ryan Johnson,Sutter Health Park,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jacob Wilson,R,vs_RHP,Men_On,Ryan Zeferjahn,Sutter Health Park,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jeff McNeil,L,vs_LHP,Empty,Brent Suter,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jeff McNeil,L,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jeff McNeil,L,vs_RHP,Empty,Ryan Zeferjahn,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jeff McNeil,L,vs_RHP,RISP,Ryan Johnson,Sutter Health Park,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jonah Heim,L,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jonah Heim,L,vs_RHP,Men_On,Ryan Zeferjahn,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Jonah Heim,L,vs_RHP,RISP,Ryan Johnson,Sutter Health Park,night,home,2,2,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Nick Kurtz,L,vs_LHP,Empty,Brent Suter,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Nick Kurtz,L,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Nick Kurtz,L,vs_RHP,RISP,Ryan Johnson,Sutter Health Park,night,home,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Shea Langeliers,R,vs_LHP,Empty,Brent Suter,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Shea Langeliers,R,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,3,3,1,0,0,0,1,3,0,0,1,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Tyler Soderstrom,L,vs_LHP,Empty,Brent Suter,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Tyler Soderstrom,L,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,3,3,1,0,0,0,1,1,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Zack Gelof,R,vs_LHP,Empty,Brent Suter,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Zack Gelof,R,vs_RHP,Empty,Ryan Johnson,Sutter Health Park,night,home,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Zack Gelof,R,vs_RHP,Loaded,Ryan Johnson,Sutter Health Park,night,home,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Athletics,Los Angeles Angels,Zack Gelof,R,vs_RHP,Men_On,Ryan Johnson,Sutter Health Park,night,home,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Christian Moore,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,2,2,0,0,0,0,0,0,0,0,2,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Christian Moore,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Christian Moore,R,vs_LHP,RISP,Hogan Harris,Sutter Health Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Denzer Guzman,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,2,2,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Denzer Guzman,R,vs_LHP,Empty,Hogan Harris,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Denzer Guzman,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Denzer Guzman,R,vs_RHP,Men_On,Mason Barnett,Sutter Health Park,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Jo Adell,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Jo Adell,R,vs_LHP,Empty,Hogan Harris,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Jo Adell,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Jose Siri,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Jose Siri,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Logan O'Hoppe,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Logan O'Hoppe,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Logan O'Hoppe,R,vs_RHP,Men_On,Mason Barnett,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Nick Madrigal,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,2,2,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Nick Madrigal,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,0,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Nick Madrigal,R,vs_RHP,Empty,Mason Barnett,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Oswald Peraza,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Oswald Peraza,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Oswald Peraza,R,vs_LHP,Men_On,Hogan Harris,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Oswald Peraza,R,vs_LHP,RISP,Gage Jump,Sutter Health Park,night,away,1,1,1,0,1,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Vaughn Grissom,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Vaughn Grissom,R,vs_LHP,Men_On,Gage Jump,Sutter Health Park,night,away,2,1,0,0,0,0,0,0,1,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Vaughn Grissom,R,vs_LHP,Men_On,Hogan Harris,Sutter Health Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Wade Meckler,L,vs_RHP,RISP,Mason Barnett,Sutter Health Park,night,away,1,1,1,1,0,0,0,0,0,0,0,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Zach Neto,R,vs_LHP,Empty,Gage Jump,Sutter Health Park,night,away,3,3,0,0,0,0,0,0,0,0,1,0,0
+2026,202606,824989,2026-06-18,Los Angeles Angels,Athletics,Zach Neto,R,vs_RHP,RISP,Mason Barnett,Sutter Health Park,night,away,1,1,0,0,0,0,0,0,0,0,0,0,0
