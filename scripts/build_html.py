@@ -2,6 +2,9 @@
 build_html.py
 -------------
 Lê data/df_batters.csv e data/df_pitchers.csv e gera docs/index.html
+no formato de dashboard: cards de líderes na visão geral + abas com
+tabelas completas de batters e pitchers (agregados por jogador, sem
+quebra por time, já que jogadores podem ser trocados durante a temporada).
 
 Uso:
     python scripts/build_html.py
@@ -11,7 +14,6 @@ import json
 import pandas as pd
 from pathlib import Path
 
-# ── Caminhos ───────────────────────────────────────────────
 DATA_DIR = Path(__file__).parent.parent / "data"
 DOCS_DIR = Path(__file__).parent.parent / "docs"
 
@@ -31,11 +33,11 @@ def build_html(db: pd.DataFrame, dp: pd.DataFrame) -> str:
     ))
     teams_opts = "".join(f"<option>{t}</option>" for t in teams)
 
-    b_cols = ["batting_team", "fielding_team", "batter", "bat_side", "batter_split",
+    b_cols = ["game_pk", "batting_team", "fielding_team", "batter", "bat_side", "batter_split",
               "men_on_base", "pitcher", "day_night", "home_away_batting",
               "PA", "AB", "H", "singles", "doubles", "triples", "HR",
               "RBI", "BB", "IBB", "SO", "HBP", "SF"]
-    p_cols = ["fielding_team", "batting_team", "pitcher", "pitch_hand", "pitcher_split",
+    p_cols = ["game_pk", "fielding_team", "batting_team", "pitcher", "pitch_hand", "pitcher_split",
               "men_on_base", "batter", "day_night", "home_away_pitching",
               "BF", "AB", "H", "singles", "doubles", "triples", "HR",
               "BB", "IBB", "SO", "HBP", "SF", "total_outs"]
@@ -51,87 +53,139 @@ def build_html(db: pd.DataFrame, dp: pd.DataFrame) -> str:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MLB Stats {season}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.1.0/iconfont/tabler-icons.min.css">
 <style>
+:root{{
+  --bg:#0a1628; --surface:#0f2138; --surface2:#142a45; --border:rgba(255,255,255,.08);
+  --border2:rgba(255,255,255,.14); --text:#e8eaf0; --text2:#8892a4; --text3:#5a6478;
+  --accent:#f5c518; --accent-dim:rgba(245,197,24,.12);
+  --hi:#16a34a; --md:#ca8a04; --lo:#dc2626;
+  --row-hover:rgba(245,197,24,.06);
+}}
+[data-theme="light"]{{
+  --bg:#f7f8fa; --surface:#ffffff; --surface2:#f1f3f6; --border:rgba(10,22,40,.10);
+  --border2:rgba(10,22,40,.16); --text:#0f1a2b; --text2:#5a6478; --text3:#8892a4;
+  --accent:#b8860b; --accent-dim:rgba(184,134,11,.10);
+  --hi:#16a34a; --md:#b45309; --lo:#dc2626;
+  --row-hover:rgba(184,134,11,.06);
+}}
 *{{box-sizing:border-box;margin:0;padding:0}}
-body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a1628;color:#e8eaf0;min-height:100vh}}
-header{{padding:1.2rem 2rem;border-bottom:1px solid rgba(245,197,24,.2);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}}
-h1{{font-size:1.25rem;font-weight:600;color:#f5c518;margin-right:auto}}
-.tabs{{display:flex;gap:6px}}
-.tab{{padding:6px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:transparent;color:#8892a4;font-size:13px;cursor:pointer;transition:all .15s}}
-.tab.active{{background:#f5c518;border-color:#f5c518;color:#0a1628;font-weight:600}}
-.filters{{display:flex;gap:10px;padding:.8rem 2rem;flex-wrap:wrap;align-items:flex-end;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.06)}}
+body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .15s,color .15s}}
+
+header{{padding:1.1rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);z-index:20}}
+header h1{{font-size:1.15rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:8px;white-space:nowrap}}
+nav{{display:flex;gap:4px;margin-left:auto}}
+.nav-btn{{padding:7px 16px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px}}
+.nav-btn:hover{{color:var(--text);background:rgba(128,128,128,.08)}}
+.nav-btn.active{{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}}
+.theme-toggle{{width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}}
+.theme-toggle:hover{{color:var(--accent);border-color:var(--accent)}}
+
+.page{{display:none;padding:1.5rem 2rem 3rem}}
+.page.active{{display:block}}
+
+.section-title{{font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin:2rem 0 .9rem}}
+.section-title:first-child{{margin-top:0}}
+
+.kpi-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}}
+.kpi-card{{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden}}
+.kpi-card .kpi-icon{{position:absolute;right:14px;top:14px;font-size:22px;color:var(--border2)}}
+.kpi-label{{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:10px}}
+.kpi-row{{display:flex;align-items:baseline;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border)}}
+.kpi-row:last-child{{border-bottom:none}}
+.kpi-name{{font-size:13.5px;color:var(--text);font-weight:500}}
+.kpi-value{{font-size:14px;color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}}
+.kpi-rank{{font-size:11px;color:var(--text3);width:16px;display:inline-block}}
+
+.filters{{display:flex;gap:10px;padding:.8rem 0 1.1rem;flex-wrap:wrap;align-items:flex-end;border-bottom:1px solid var(--border);margin-bottom:1rem}}
 .fg{{display:flex;flex-direction:column;gap:3px}}
-label{{font-size:11px;color:#8892a4;text-transform:uppercase;letter-spacing:.04em}}
-input,select{{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#e8eaf0;padding:6px 10px;border-radius:5px;font-size:13px;outline:none}}
-input:focus,select:focus{{border-color:rgba(245,197,24,.5)}}
-select option{{background:#0d1f38}}
-.info-bar{{display:flex;gap:16px;padding:.5rem 2rem;font-size:12px;color:#8892a4;border-bottom:1px solid rgba(255,255,255,.06)}}
-.info-bar b{{color:#f5c518}}
-.wrap{{overflow-x:auto;padding-bottom:2rem}}
-table{{width:100%;border-collapse:collapse;font-size:13px;min-width:900px}}
-thead tr{{background:rgba(255,255,255,.04)}}
-th{{padding:9px 12px;text-align:right;font-weight:500;color:#8892a4;font-size:11px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;cursor:pointer;user-select:none;background:#0d1f38;position:sticky;top:0;z-index:1}}
-th:first-child,th:nth-child(2),th:nth-child(3){{text-align:left}}
-th:hover{{color:#f5c518}}
-th.asc::after{{content:' ↑';color:#f5c518}}
-th.desc::after{{content:' ↓';color:#f5c518}}
-tbody tr{{border-bottom:1px solid rgba(255,255,255,.04)}}
-tbody tr:hover{{background:rgba(245,197,24,.04)}}
-td{{padding:8px 12px;text-align:right;color:#c8cdd8}}
-td:first-child{{text-align:left;color:#5a6478;font-size:11px}}
-td:nth-child(2){{text-align:left;font-weight:500;color:#e8eaf0;white-space:nowrap}}
-td:nth-child(3){{text-align:left;color:#8892a4;font-size:12px;white-space:nowrap}}
-.hi{{color:#4ade80;font-weight:600}}
-.md{{color:#fbbf24;font-weight:500}}
-.lo{{color:#f87171}}
-.empty{{text-align:center;color:#5a6478;padding:3rem;font-size:14px}}
+.fg label{{font-size:10.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}}
+input,select{{background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px;outline:none}}
+input:focus,select:focus{{border-color:var(--accent)}}
+select option{{background:var(--surface)}}
+input::placeholder{{color:var(--text3)}}
+
+.info-bar{{font-size:12px;color:var(--text2);padding-bottom:.7rem}}
+.info-bar b{{color:var(--accent)}}
+
+.wrap{{overflow-x:auto;border:1px solid var(--border);border-radius:10px}}
+table{{width:100%;border-collapse:collapse;font-size:13px;min-width:820px}}
+thead tr{{background:var(--surface)}}
+th{{padding:9px 12px;text-align:right;font-weight:600;color:var(--text2);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;cursor:pointer;user-select:none;background:var(--surface)}}
+th:first-child,th:nth-child(2){{text-align:left}}
+th:hover{{color:var(--accent)}}
+th.asc::after{{content:' ↑';color:var(--accent)}}
+th.desc::after{{content:' ↓';color:var(--accent)}}
+tbody tr{{border-top:1px solid var(--border)}}
+tbody tr:hover{{background:var(--row-hover)}}
+td{{padding:8px 12px;text-align:right;color:var(--text);font-variant-numeric:tabular-nums}}
+td:first-child{{text-align:left;color:var(--text3);font-size:11px}}
+td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:nowrap}}
+.hi{{color:var(--hi);font-weight:600}}
+.md{{color:var(--md);font-weight:500}}
+.lo{{color:var(--lo)}}
+.empty{{text-align:center;color:var(--text3);padding:3rem;font-size:14px}}
 </style>
 </head>
 <body>
 <header>
-  <h1>⚾ MLB Stats {season}</h1>
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('bat')">Batters</button>
-    <button class="tab" onclick="switchTab('pit')">Pitchers</button>
-  </div>
+  <h1><i class="ti ti-baseball" aria-hidden="true"></i>MLB Stats {season}</h1>
+  <nav>
+    <button class="nav-btn active" data-page="overview"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Visão geral</button>
+    <button class="nav-btn" data-page="bat"><i class="ti ti-baseball-bat" aria-hidden="true"></i>Batters</button>
+    <button class="nav-btn" data-page="pit"><i class="ti ti-circle-dot" aria-hidden="true"></i>Pitchers</button>
+  </nav>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro"><i class="ti ti-moon" aria-hidden="true" id="theme-icon"></i></button>
 </header>
 
-<div class="filters" id="bat-filters">
-  <div class="fg"><label>Jogador</label><input id="b-q" placeholder="Buscar..."/></div>
-  <div class="fg"><label>Time (bat)</label><select id="b-tm"><option value="">Todos</option>{teams_opts}</select></div>
-  <div class="fg"><label>Adversário</label><select id="b-ft"><option value="">Todos</option>{teams_opts}</select></div>
-  <div class="fg"><label>Lado</label><select id="b-bs"><option value="">Ambos</option><option value="R">Direita (R)</option><option value="L">Esquerda (L)</option></select></div>
-  <div class="fg"><label>Split</label><select id="b-sp"><option value="">Todos</option><option value="vs_RHP">vs RHP</option><option value="vs_LHP">vs LHP</option></select></div>
-  <div class="fg"><label>Situação</label><select id="b-mo"><option value="">Todas</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
-  <div class="fg"><label>Home/Away</label><select id="b-ha"><option value="">Todos</option><option value="home">Home</option><option value="away">Away</option></select></div>
-  <div class="fg"><label>Mín. PA</label><input id="b-mpa" type="number" value="10" min="1" style="width:65px"/></div>
+<div class="page active" id="page-overview">
+  <div class="section-title">Líderes — batting</div>
+  <div class="kpi-grid" id="kpi-bat"></div>
+  <div class="section-title">Líderes — pitching</div>
+  <div class="kpi-grid" id="kpi-pit"></div>
 </div>
 
-<div class="filters" id="pit-filters" style="display:none">
-  <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Buscar..."/></div>
-  <div class="fg"><label>Time (pit)</label><select id="p-tm"><option value="">Todos</option>{teams_opts}</select></div>
-  <div class="fg"><label>Adversário</label><select id="p-ft"><option value="">Todos</option>{teams_opts}</select></div>
-  <div class="fg"><label>Mão</label><select id="p-ph"><option value="">Ambas</option><option value="R">Direita (R)</option><option value="L">Esquerda (L)</option></select></div>
-  <div class="fg"><label>Split</label><select id="p-sp"><option value="">Todos</option><option value="vs_RHB">vs RHB</option><option value="vs_LHB">vs LHB</option></select></div>
-  <div class="fg"><label>Situação</label><select id="p-mo"><option value="">Todas</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
-  <div class="fg"><label>Home/Away</label><select id="p-ha"><option value="">Todos</option><option value="home">Home</option><option value="away">Away</option></select></div>
-  <div class="fg"><label>Mín. BF</label><input id="p-mbf" type="number" value="10" min="1" style="width:65px"/></div>
+<div class="page" id="page-bat">
+  <div class="filters">
+    <div class="fg"><label>Jogador</label><input id="b-q" placeholder="Buscar..."/></div>
+    <div class="fg"><label>Time (bat)</label><select id="b-tm"><option value="">Todos</option>{teams_opts}</select></div>
+    <div class="fg"><label>Adversário</label><select id="b-ft"><option value="">Todos</option>{teams_opts}</select></div>
+    <div class="fg"><label>Lado</label><select id="b-bs"><option value="">Ambos</option><option value="R">Direita (R)</option><option value="L">Esquerda (L)</option></select></div>
+    <div class="fg"><label>Split</label><select id="b-sp"><option value="">Todos</option><option value="vs_RHP">vs RHP</option><option value="vs_LHP">vs LHP</option></select></div>
+    <div class="fg"><label>Situação</label><select id="b-mo"><option value="">Todas</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
+    <div class="fg"><label>Home/Away</label><select id="b-ha"><option value="">Todos</option><option value="home">Home</option><option value="away">Away</option></select></div>
+    <div class="fg"><label>Mín. PA</label><input id="b-mpa" type="number" value="10" min="1" style="width:65px"/></div>
+  </div>
+  <div class="info-bar" id="b-info"></div>
+  <div class="wrap"><table><thead id="b-thead"></thead><tbody id="b-tb"></tbody></table></div>
+  <div class="empty" id="b-emp" style="display:none">Nenhum resultado encontrado.</div>
 </div>
 
-<div class="info-bar" id="info">Carregando...</div>
-<div class="wrap">
-  <table><thead id="thead"></thead><tbody id="tb"></tbody></table>
-  <div class="empty" id="emp" style="display:none">Nenhum resultado encontrado.</div>
+<div class="page" id="page-pit">
+  <div class="filters">
+    <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Buscar..."/></div>
+    <div class="fg"><label>Time (pit)</label><select id="p-tm"><option value="">Todos</option>{teams_opts}</select></div>
+    <div class="fg"><label>Adversário</label><select id="p-ft"><option value="">Todos</option>{teams_opts}</select></div>
+    <div class="fg"><label>Mão</label><select id="p-ph"><option value="">Ambas</option><option value="R">Direita (R)</option><option value="L">Esquerda (L)</option></select></div>
+    <div class="fg"><label>Split</label><select id="p-sp"><option value="">Todos</option><option value="vs_RHB">vs RHB</option><option value="vs_LHB">vs LHB</option></select></div>
+    <div class="fg"><label>Situação</label><select id="p-mo"><option value="">Todas</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
+    <div class="fg"><label>Home/Away</label><select id="p-ha"><option value="">Todos</option><option value="home">Home</option><option value="away">Away</option></select></div>
+    <div class="fg"><label>Mín. BF</label><input id="p-mbf" type="number" value="10" min="1" style="width:65px"/></div>
+  </div>
+  <div class="info-bar" id="p-info"></div>
+  <div class="wrap"><table><thead id="p-thead"></thead><tbody id="p-tb"></tbody></table></div>
+  <div class="empty" id="p-emp" style="display:none">Nenhum resultado encontrado.</div>
 </div>
 
 <script>
 const BRAW={b_json};
 const PRAW={p_json};
-let mode='bat', sortK='PA', sortAsc=false;
+let sortBatK='PA', sortBatAsc=false;
+let sortPitK='BF', sortPitAsc=false;
 
-function fmt3(v){{return v===0?'.000':v.toFixed(3).replace('0.','.'); }}
-function fmtPct(v){{return (v*100).toFixed(1)+'%'; }}
-function fmtIP(o){{return Math.floor(o/3)+'.'+(o%3); }}
+function fmt3(v){{ return v===0?'.000':v.toFixed(3).replace('0.','.'); }}
+function fmtPct(v){{ return (v*100).toFixed(1)+'%'; }}
+function fmtIP(o){{ return Math.floor(o/3)+'.'+(o%3); }}
 function cls(v,hi,md,inv=false){{
   if(inv) return v<=hi?'hi':v<=md?'md':'lo';
   return v>=hi?'hi':v>=md?'md':'lo';
@@ -140,9 +194,10 @@ function cls(v,hi,md,inv=false){{
 function aggBat(rows){{
   const m={{}};
   for(const r of rows){{
-    const k=r.batter+'|||'+r.batting_team;
-    if(!m[k]) m[k]={{batter:r.batter,batting_team:r.batting_team,PA:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,RBI:0,BB:0,IBB:0,SO:0,HBP:0,SF:0}};
+    const k=r.batter;
+    if(!m[k]) m[k]={{batter:r.batter,games:new Set(),PA:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,RBI:0,BB:0,IBB:0,SO:0,HBP:0,SF:0}};
     const a=m[k];
+    a.games.add(r.game_pk);
     a.PA+=r.PA;a.AB+=r.AB;a.H+=r.H;a.singles+=r.singles;
     a.doubles+=r.doubles;a.triples+=r.triples;a.HR+=r.HR;
     a.RBI+=r.RBI;a.BB+=r.BB;a.IBB+=r.IBB;a.SO+=r.SO;a.HBP+=r.HBP;a.SF+=r.SF;
@@ -151,16 +206,17 @@ function aggBat(rows){{
     const avg=a.AB>0?a.H/a.AB:0;
     const obp=(a.AB+a.BB+a.IBB+a.HBP+a.SF)>0?(a.H+a.BB+a.IBB+a.HBP)/(a.AB+a.BB+a.IBB+a.HBP+a.SF):0;
     const slg=a.AB>0?(a.singles+2*a.doubles+3*a.triples+4*a.HR)/a.AB:0;
-    return {{...a,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3)}};
+    return {{...a,G:a.games.size,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3)}};
   }});
 }}
 
 function aggPit(rows){{
   const m={{}};
   for(const r of rows){{
-    const k=r.pitcher+'|||'+r.fielding_team;
-    if(!m[k]) m[k]={{pitcher:r.pitcher,fielding_team:r.fielding_team,BF:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,BB:0,IBB:0,SO:0,HBP:0,SF:0,outs:0}};
+    const k=r.pitcher;
+    if(!m[k]) m[k]={{pitcher:r.pitcher,games:new Set(),BF:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,BB:0,IBB:0,SO:0,HBP:0,SF:0,outs:0}};
     const a=m[k];
+    a.games.add(r.game_pk);
     a.BF+=r.BF;a.AB+=r.AB;a.H+=r.H;a.singles+=r.singles;
     a.doubles+=r.doubles;a.triples+=r.triples;a.HR+=r.HR;
     a.BB+=r.BB;a.IBB+=r.IBB;a.SO+=r.SO;a.HBP+=r.HBP;a.SF+=r.SF;
@@ -172,8 +228,45 @@ function aggPit(rows){{
     const slg=a.AB>0?(a.singles+2*a.doubles+3*a.triples+4*a.HR)/a.AB:0;
     const kpct=a.BF>0?a.SO/a.BF:0;
     const bbpct=a.BF>0?(a.BB+a.IBB)/a.BF:0;
-    return {{...a,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3)}};
+    return {{...a,G:a.games.size,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3)}};
   }});
+}}
+
+const MIN_PA_KPI = 15;
+const MIN_BF_KPI = 15;
+
+function kpiCard(label, icon, sorted, key, fmt){{
+  return `<div class="kpi-card">
+    <i class="ti ${{icon}} kpi-icon" aria-hidden="true"></i>
+    <div class="kpi-label">${{label}}</div>
+    ${{sorted.map((d,i)=>`<div class="kpi-row">
+      <span><span class="kpi-rank">${{i+1}}</span><span class="kpi-name">${{d.batter||d.pitcher}}</span></span>
+      <span class="kpi-value">${{fmt(d[key])}}</span>
+    </div>`).join('')}}
+  </div>`;
+}}
+
+function top5(rows,key,asc=false){{
+  return [...rows].sort((a,b)=>asc?a[key]-b[key]:b[key]-a[key]).slice(0,5);
+}}
+
+function renderKPIs(){{
+  const batAgg = aggBat(BRAW).filter(a=>a.PA>=MIN_PA_KPI);
+  const pitAgg = aggPit(PRAW).filter(a=>a.BF>=MIN_BF_KPI);
+
+  document.getElementById('kpi-bat').innerHTML = [
+    kpiCard('Home runs','ti-ball-baseball',top5(batAgg,'HR'),'HR',v=>v),
+    kpiCard('Average (AVG)','ti-chart-bar',top5(batAgg,'AVG'),'AVG',fmt3),
+    kpiCard('OPS','ti-bolt',top5(batAgg,'OPS'),'OPS',fmt3),
+    kpiCard('RBI','ti-flag',top5(batAgg,'RBI'),'RBI',v=>v),
+  ].join('');
+
+  document.getElementById('kpi-pit').innerHTML = [
+    kpiCard('Strikeouts (K)','ti-target',top5(pitAgg,'SO'),'SO',v=>v),
+    kpiCard('K%','ti-percentage',top5(pitAgg,'Kpct'),'Kpct',fmtPct),
+    kpiCard('BAA (menor)','ti-shield',top5(pitAgg,'BAA',true),'BAA',fmt3),
+    kpiCard('Innings (IP)','ti-clock',top5(pitAgg,'outs'),'outs',v=>fmtIP(v)),
+  ].join('');
 }}
 
 function renderBat(){{
@@ -193,30 +286,25 @@ function renderBat(){{
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_batting===ha)
   );
   let data=aggBat(rows).filter(a=>a.PA>=mpa);
-  data.sort((a,b)=>{{
-    let av=a[sortK],bv=b[sortK];
-    if(typeof av==='string'){{av=av.toLowerCase();bv=bv.toLowerCase();}}
-    return sortAsc?(av>bv?1:-1):(av<bv?1:-1);
-  }});
+  data.sort((a,b)=>{{let av=a[sortBatK],bv=b[sortBatK];if(typeof av==='string'){{av=av.toLowerCase();bv=bv.toLowerCase();}}return sortBatAsc?(av>bv?1:-1):(av<bv?1:-1);}});
 
-  document.getElementById('info').innerHTML=
-    `Exibindo <b>${{data.length}}</b> jogadores · <b>${{rows.length}}</b> linhas · Mín. <b>${{mpa}} PA</b>`;
+  document.getElementById('b-info').innerHTML=`Exibindo <b>${{data.length}}</b> jogadores · <b>${{rows.length}}</b> linhas · Mín. <b>${{mpa}} PA</b>`;
 
-  document.getElementById('thead').innerHTML=`<tr>
-    <th data-k="rank">#</th><th data-k="batter">Jogador</th><th data-k="batting_team">Time</th>
+  document.getElementById('b-thead').innerHTML=`<tr>
+    <th data-k="rank">#</th><th data-k="batter">Jogador</th>
     <th data-k="PA">PA</th><th data-k="AB">AB</th><th data-k="H">H</th>
     <th data-k="doubles">2B</th><th data-k="triples">3B</th><th data-k="HR">HR</th>
     <th data-k="RBI">RBI</th><th data-k="BB">BB</th><th data-k="IBB">IBB</th>
     <th data-k="SO">K</th><th data-k="HBP">HBP</th><th data-k="SF">SF</th>
     <th data-k="AVG">AVG</th><th data-k="OBP">OBP</th><th data-k="SLG">SLG</th><th data-k="OPS">OPS</th>
   </tr>`;
-  bindSort();
+  bindSortBat();
 
-  const emp=document.getElementById('emp');
-  if(!data.length){{document.getElementById('tb').innerHTML='';emp.style.display='block';return;}}
+  const emp=document.getElementById('b-emp');
+  if(!data.length){{document.getElementById('b-tb').innerHTML='';emp.style.display='block';return;}}
   emp.style.display='none';
-  document.getElementById('tb').innerHTML=data.map((d,i)=>`<tr>
-    <td>${{i+1}}</td><td>${{d.batter}}</td><td>${{d.batting_team}}</td>
+  document.getElementById('b-tb').innerHTML=data.map((d,i)=>`<tr>
+    <td>${{i+1}}</td><td>${{d.batter}}</td>
     <td>${{d.PA}}</td><td>${{d.AB}}</td><td>${{d.H}}</td>
     <td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
     <td>${{d.RBI}}</td><td>${{d.BB}}</td><td>${{d.IBB}}</td>
@@ -226,6 +314,18 @@ function renderBat(){{
     <td class="${{cls(d.SLG,.45,.35)}}">${{fmt3(d.SLG)}}</td>
     <td class="${{cls(d.OPS,.9,.7)}}">${{fmt3(d.OPS)}}</td>
   </tr>`).join('');
+}}
+
+function bindSortBat(){{
+  document.querySelectorAll('#b-thead th[data-k]').forEach(th=>{{
+    th.addEventListener('click',()=>{{
+      const k=th.dataset.k; if(k==='rank') return;
+      if(sortBatK===k) sortBatAsc=!sortBatAsc; else{{sortBatK=k;sortBatAsc=false;}}
+      renderBat();
+    }});
+  }});
+  const th=document.querySelector(`#b-thead th[data-k="${{sortBatK}}"]`);
+  if(th) th.className=sortBatAsc?'asc':'desc';
 }}
 
 function renderPit(){{
@@ -246,32 +346,31 @@ function renderPit(){{
   );
   let data=aggPit(rows).filter(a=>a.BF>=mbf);
   data.sort((a,b)=>{{
-    const sk=sortK==='IP'?'outs':sortK;
+    const sk=sortPitK==='IP'?'outs':sortPitK;
     let av=a[sk],bv=b[sk];
     if(typeof av==='string'){{av=av.toLowerCase();bv=bv.toLowerCase();}}
-    return sortAsc?(av>bv?1:-1):(av<bv?1:-1);
+    return sortPitAsc?(av>bv?1:-1):(av<bv?1:-1);
   }});
 
-  document.getElementById('info').innerHTML=
-    `Exibindo <b>${{data.length}}</b> pitchers · <b>${{rows.length}}</b> linhas · Mín. <b>${{mbf}} BF</b>`;
+  document.getElementById('p-info').innerHTML=`Exibindo <b>${{data.length}}</b> pitchers · <b>${{rows.length}}</b> linhas · Mín. <b>${{mbf}} BF</b>`;
 
-  document.getElementById('thead').innerHTML=`<tr>
-    <th data-k="rank">#</th><th data-k="pitcher">Pitcher</th><th data-k="fielding_team">Time</th>
-    <th data-k="IP">IP</th><th data-k="BF">BF</th><th data-k="AB">AB</th>
+  document.getElementById('p-thead').innerHTML=`<tr>
+    <th data-k="rank">#</th><th data-k="pitcher">Pitcher</th>
+    <th data-k="G">G</th><th data-k="IP">IP</th><th data-k="BF">BF</th><th data-k="AB">AB</th>
     <th data-k="H">H</th><th data-k="doubles">2B</th><th data-k="triples">3B</th><th data-k="HR">HR</th>
     <th data-k="BB">BB</th><th data-k="IBB">IBB</th><th data-k="SO">K</th>
     <th data-k="HBP">HBP</th><th data-k="SF">SF</th>
     <th data-k="BAA">BAA</th><th data-k="OBP">OBP</th><th data-k="SLG">SLG</th><th data-k="OPS">OPS</th>
     <th data-k="Kpct">K%</th><th data-k="BBpct">BB%</th>
   </tr>`;
-  bindSort();
+  bindSortPit();
 
-  const emp=document.getElementById('emp');
-  if(!data.length){{document.getElementById('tb').innerHTML='';emp.style.display='block';return;}}
+  const emp=document.getElementById('p-emp');
+  if(!data.length){{document.getElementById('p-tb').innerHTML='';emp.style.display='block';return;}}
   emp.style.display='none';
-  document.getElementById('tb').innerHTML=data.map((d,i)=>`<tr>
-    <td>${{i+1}}</td><td>${{d.pitcher}}</td><td>${{d.fielding_team}}</td>
-    <td>${{d.IP}}</td><td>${{d.BF}}</td><td>${{d.AB}}</td>
+  document.getElementById('p-tb').innerHTML=data.map((d,i)=>`<tr>
+    <td>${{i+1}}</td><td>${{d.pitcher}}</td>
+    <td>${{d.G}}</td><td>${{d.IP}}</td><td>${{d.BF}}</td><td>${{d.AB}}</td>
     <td>${{d.H}}</td><td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
     <td>${{d.BB}}</td><td>${{d.IBB}}</td><td>${{d.SO}}</td>
     <td>${{d.HBP}}</td><td>${{d.SF}}</td>
@@ -284,41 +383,50 @@ function renderPit(){{
   </tr>`).join('');
 }}
 
-function bindSort(){{
-  document.querySelectorAll('th[data-k]').forEach(th=>{{
+function bindSortPit(){{
+  document.querySelectorAll('#p-thead th[data-k]').forEach(th=>{{
     th.addEventListener('click',()=>{{
       const k=th.dataset.k; if(k==='rank') return;
-      if(sortK===k) sortAsc=!sortAsc; else{{sortK=k;sortAsc=false;}}
-      document.querySelectorAll('th').forEach(t=>t.className='');
-      th.className=sortAsc?'asc':'desc';
-      render();
+      if(sortPitK===k) sortPitAsc=!sortPitAsc; else{{sortPitK=k;sortPitAsc=false;}}
+      renderPit();
     }});
   }});
-  const th=document.querySelector(`th[data-k="${{sortK}}"]`);
-  if(th) th.className=sortAsc?'asc':'desc';
+  const th=document.querySelector(`#p-thead th[data-k="${{sortPitK}}"]`);
+  if(th) th.className=sortPitAsc?'asc':'desc';
 }}
 
-function render(){{mode==='bat'?renderBat():renderPit();}}
+document.querySelectorAll('.nav-btn').forEach(btn=>{{
+  btn.addEventListener('click',()=>{{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('page-'+btn.dataset.page).classList.add('active');
+  }});
+}});
 
-function switchTab(m){{
-  mode=m;
-  document.querySelectorAll('.tab').forEach((t,i)=>
-    t.className='tab'+((['bat','pit'][i]===m)?' active':'')
-  );
-  document.getElementById('bat-filters').style.display=m==='bat'?'flex':'none';
-  document.getElementById('pit-filters').style.display=m==='pit'?'flex':'none';
-  sortK=m==='bat'?'PA':'BF'; sortAsc=false;
-  render();
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+function applyTheme(t){{
+  document.documentElement.setAttribute('data-theme', t);
+  themeIcon.className = t==='light' ? 'ti ti-sun' : 'ti ti-moon';
 }}
+const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+applyTheme(prefersLight ? 'light' : 'dark');
+themeToggle.addEventListener('click', ()=>{{
+  const cur = document.documentElement.getAttribute('data-theme');
+  applyTheme(cur==='light' ? 'dark' : 'light');
+}});
 
 ['b-q','b-tm','b-ft','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
-  document.getElementById(id).addEventListener('input',render)
+  document.getElementById(id).addEventListener('input',renderBat)
 );
 ['p-q','p-tm','p-ft','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
-  document.getElementById(id).addEventListener('input',render)
+  document.getElementById(id).addEventListener('input',renderPit)
 );
 
-render();
+renderKPIs();
+renderBat();
+renderPit();
 </script>
 </body>
 </html>"""
