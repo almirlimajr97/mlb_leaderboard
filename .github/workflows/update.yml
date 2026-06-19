@@ -17,6 +17,9 @@ on:
         required: false
         default: "1"
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -48,9 +51,10 @@ jobs:
           if manual_date:
               dates = [manual_date]
           elif is_sunday or reprocess_days > 1:
-              # Reprocessa os últimos 7 dias
+              # Reprocessa os últimos N dias
               today = date.today()
-              dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(1, 8)]
+              n = reprocess_days if reprocess_days > 1 else 7
+              dates = [(today - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(1, n + 1)]
           else:
               # Busca só ontem
               dates = [(date.today() - timedelta(days=1)).strftime("%Y-%m-%d")]
