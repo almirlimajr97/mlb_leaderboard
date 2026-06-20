@@ -45,7 +45,8 @@ jobs:
 
           # Verifica se foi disparado manualmente com data específica
           manual_date = os.environ.get("MANUAL_DATE", "").strip()
-          reprocess_days = int(os.environ.get("REPROCESS_DAYS", "1"))
+          reprocess_days_raw = os.environ.get("REPROCESS_DAYS", "").strip()
+          reprocess_days = int(reprocess_days_raw) if reprocess_days_raw else 1
           is_sunday = date.today().weekday() == 6
 
           if manual_date:
