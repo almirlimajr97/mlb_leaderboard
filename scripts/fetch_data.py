@@ -44,19 +44,19 @@ def get_games(game_date: str) -> pd.DataFrame:
     rows = []
     for g in games:
         rows.append({
-            "season":             g["season"],
-            "game_type":          g["gameType"],
-            "series_description": g["seriesDescription"],
-            "game_date":          g["officialDate"],
-            "game_pk":            g["gamePk"],
-            "day_night":          g["dayNight"],
-            "venue":              g["venue"]["name"],
-            "series_game":        g["seriesGameNumber"],
-            "away":               g["teams"]["away"]["team"]["name"],
-            "away_score":         g["teams"]["away"].get("score", "-"),
-            "home":               g["teams"]["home"]["team"]["name"],
-            "home_score":         g["teams"]["home"].get("score", "-"),
-            "status":             g["status"]["detailedState"],
+            "season":             g.get("season"),
+            "game_type":          g.get("gameType"),
+            "series_description": g.get("seriesDescription"),
+            "game_date":          g.get("officialDate"),
+            "game_pk":            g.get("gamePk"),
+            "day_night":          g.get("dayNight"),
+            "venue":              g.get("venue", {}).get("name"),
+            "series_game":        g.get("seriesGameNumber"),
+            "away":               g.get("teams", {}).get("away", {}).get("team", {}).get("name"),
+            "away_score":         g.get("teams", {}).get("away", {}).get("score", "-"),
+            "home":               g.get("teams", {}).get("home", {}).get("team", {}).get("name"),
+            "home_score":         g.get("teams", {}).get("home", {}).get("score", "-"),
+            "status":             g.get("status", {}).get("detailedState"),
         })
     return pd.DataFrame(rows)
 
@@ -69,9 +69,9 @@ def get_play_by_play(game_pk: int) -> pd.DataFrame:
         timeout=10,
     )
     g = r_schedule.json()["dates"][0]["games"][0]
-    away  = g["teams"]["away"]["team"]["name"]
-    home  = g["teams"]["home"]["team"]["name"]
-    venue = g["venue"]["name"]
+    away  = g.get("teams", {}).get("away", {}).get("team", {}).get("name")
+    home  = g.get("teams", {}).get("home", {}).get("team", {}).get("name")
+    venue = g.get("venue", {}).get("name")
 
     # Busca play-by-play
     r = SESSION.get(f"{BASE_URL}/game/{game_pk}/playByPlay", timeout=10)
@@ -115,15 +115,15 @@ def get_play_by_play(game_pk: int) -> pd.DataFrame:
             rows.append({
                 "record_type":        "pitch",
                 "game_pk":            game_pk,
-                "game_date":          g["officialDate"],
-                "season":             g["season"],
-                "ref":                g["officialDate"][:7].replace("-", ""),
+                "game_date":          g.get("officialDate"),
+                "season":             g.get("season"),
+                "ref":                g.get("officialDate", "")[:7].replace("-", ""),
                 "venue":              venue,
                 "batting_team":       batting_team,
                 "fielding_team":      fielding_team,
                 "home_away_batting":  home_away_batting,
                 "home_away_pitching": home_away_pitching,
-                "day_night":          g["dayNight"],
+                "day_night":          g.get("dayNight"),
                 "batter":             matchup.get("batter",  {}).get("fullName"),
                 "batter_id":          matchup.get("batter",  {}).get("id"),
                 "bat_side":           matchup.get("batSide", {}).get("code"),
@@ -161,15 +161,15 @@ def get_play_by_play(game_pk: int) -> pd.DataFrame:
                 rows.append({
                     "record_type":        "baserunning",
                     "game_pk":            game_pk,
-                    "game_date":          g["officialDate"],
-                    "season":             g["season"],
-                    "ref":                g["officialDate"][:7].replace("-", ""),
+                    "game_date":          g.get("officialDate"),
+                    "season":             g.get("season"),
+                    "ref":                g.get("officialDate", "")[:7].replace("-", ""),
                     "venue":              venue,
                     "batting_team":       batting_team,
                     "fielding_team":      fielding_team,
                     "home_away_batting":  home_away_batting,
                     "home_away_pitching": home_away_pitching,
-                    "day_night":          g["dayNight"],
+                    "day_night":          g.get("dayNight"),
                     "batter":             matchup.get("batter",  {}).get("fullName"),
                     "batter_id":          matchup.get("batter",  {}).get("id"),
                     "bat_side":           matchup.get("batSide", {}).get("code"),
