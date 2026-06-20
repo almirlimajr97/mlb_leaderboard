@@ -26,7 +26,7 @@ def load_data():
     return db, dp
 
 
-def build_html(db: pd.DataFrame, dp: pd.DataFrame) -> str:
+def build_html(db: pd.DataFrame, dp: pd.DataFrame):
     seasons = sorted(set(
         db["season"].dropna().astype(int).unique().tolist() +
         dp["season"].dropna().astype(int).unique().tolist()
@@ -41,21 +41,21 @@ def build_html(db: pd.DataFrame, dp: pd.DataFrame) -> str:
     }
     month_names_json = json.dumps(MONTH_NAMES, ensure_ascii=False)
 
-    b_cols = ["game_pk", "season", "ref", "batting_team", "fielding_team", "batter", "bat_side", "batter_split",
+    b_cols = ["game_pk", "season", "ref", "game_type", "batting_team", "fielding_team", "batter", "bat_side", "batter_split",
               "men_on_base", "pitcher", "day_night", "home_away_batting",
               "PA", "AB", "H", "singles", "doubles", "triples", "HR",
               "RBI", "BB", "IBB", "SO", "HBP", "SF"]
-    p_cols = ["game_pk", "season", "ref", "fielding_team", "batting_team", "pitcher", "pitch_hand", "pitcher_split",
+    p_cols = ["game_pk", "season", "ref", "game_type", "fielding_team", "batting_team", "pitcher", "pitch_hand", "pitcher_split",
               "men_on_base", "batter", "day_night", "home_away_pitching",
               "BF", "AB", "H", "singles", "doubles", "triples", "HR",
               "BB", "IBB", "SO", "HBP", "SF", "total_outs"]
 
-    b_json = db[[c for c in b_cols if c in db.columns]].to_json(orient="records", force_ascii=False)
-    p_json = dp[[c for c in p_cols if c in dp.columns]].to_json(orient="records", force_ascii=False)
+    b_records = db[[c for c in b_cols if c in db.columns]].to_dict(orient="records")
+    p_records = dp[[c for c in p_cols if c in dp.columns]].to_dict(orient="records")
 
     season = str(db["season"].iloc[0]) if "season" in db.columns else "2026"
 
-    return f"""<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -145,6 +145,7 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
   </nav>
   <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro"><i class="ti ti-moon" aria-hidden="true" id="theme-icon"></i></button>
 </header>
+<div id="loading-bar" style="font-size:12px;color:var(--text2);padding:.5rem 2rem;border-bottom:1px solid var(--border)">Carregando dados...</div>
 
 <div class="page active" id="page-overview">
   <div class="section-title">Líderes — batting</div>
@@ -157,6 +158,7 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
   <div class="filters">
     <div class="fg"><label>Jogador</label><input id="b-q" placeholder="Buscar..."/></div>
     <div class="fg"><label>Ano</label><select id="b-season">{seasons_opts}</select></div>
+    <div class="fg"><label>Tipo de jogo</label><select id="b-gt"><option value="">Todos</option><option value="R">Regular Season</option><option value="playoffs">Playoffs</option></select></div>
     <div class="fg"><label>Mês</label><select id="b-ref"><option value="">Todos</option></select></div>
     <div class="fg"><label>Time (bat)</label><select id="b-tm"><option value="">Todos</option></select></div>
     <div class="fg"><label>Adversário</label><select id="b-ft"><option value="">Todos</option></select></div>
@@ -175,6 +177,7 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
   <div class="filters">
     <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Buscar..."/></div>
     <div class="fg"><label>Ano</label><select id="p-season">{seasons_opts}</select></div>
+    <div class="fg"><label>Tipo de jogo</label><select id="p-gt"><option value="">Todos</option><option value="R">Regular Season</option><option value="playoffs">Playoffs</option></select></div>
     <div class="fg"><label>Mês</label><select id="p-ref"><option value="">Todos</option></select></div>
     <div class="fg"><label>Time (pit)</label><select id="p-tm"><option value="">Todos</option></select></div>
     <div class="fg"><label>Adversário</label><select id="p-ft"><option value="">Todos</option></select></div>
@@ -190,8 +193,7 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
 </div>
 
 <script>
-const BRAW={b_json};
-const PRAW={p_json};
+let BRAW=[], PRAW=[];
 const MONTH_NAMES={month_names_json};
 let sortBatK='PA', sortBatAsc=false;
 let sortPitK='BF', sortPitAsc=false;
@@ -324,6 +326,7 @@ function renderBat(){{
   const q=document.getElementById('b-q').value.toLowerCase();
   const season=document.getElementById('b-season').value;
   const ref=document.getElementById('b-ref').value;
+  const gt=document.getElementById('b-gt').value;
   const tm=document.getElementById('b-tm').value;
   const ft=document.getElementById('b-ft').value;
   const bs=document.getElementById('b-bs').value;
@@ -335,6 +338,7 @@ function renderBat(){{
   let rows=BRAW.filter(r=>
     (!q||r.batter.toLowerCase().includes(q))&&
     (!season||String(r.season)===season)&&(!ref||String(r.ref)===ref)&&
+    (!gt||(gt==='R'?r.game_type==='R':r.game_type!=='R'))&&
     (!tm||r.batting_team===tm)&&(!ft||r.fielding_team===ft)&&
     (!bs||r.bat_side===bs)&&(!sp||r.batter_split===sp)&&
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_batting===ha)
@@ -387,6 +391,7 @@ function renderPit(){{
   const q=document.getElementById('p-q').value.toLowerCase();
   const season=document.getElementById('p-season').value;
   const ref=document.getElementById('p-ref').value;
+  const gt=document.getElementById('p-gt').value;
   const tm=document.getElementById('p-tm').value;
   const ft=document.getElementById('p-ft').value;
   const ph=document.getElementById('p-ph').value;
@@ -398,6 +403,7 @@ function renderPit(){{
   let rows=PRAW.filter(r=>
     (!q||r.pitcher.toLowerCase().includes(q))&&
     (!season||String(r.season)===season)&&(!ref||String(r.ref)===ref)&&
+    (!gt||(gt==='R'?r.game_type==='R':r.game_type!=='R'))&&
     (!tm||r.fielding_team===tm)&&(!ft||r.batting_team===ft)&&
     (!ph||r.pitch_hand===ph)&&(!sp||r.pitcher_split===sp)&&
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_pitching===ha)
@@ -475,35 +481,64 @@ themeToggle.addEventListener('click', ()=>{{
   applyTheme(cur==='light' ? 'dark' : 'light');
 }});
 
-['b-q','b-season','b-ref','b-tm','b-ft','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
+['b-q','b-season','b-ref','b-gt','b-tm','b-ft','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
   document.getElementById(id).addEventListener('input',renderBat)
 );
-['p-q','p-season','p-ref','p-tm','p-ft','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
+['p-q','p-season','p-ref','p-gt','p-tm','p-ft','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
   document.getElementById(id).addEventListener('input',renderPit)
 );
 
 document.getElementById('b-season').value = '{latest_season}';
 document.getElementById('p-season').value = '{latest_season}';
 
-renderKPIs();
-renderBat();
-renderPit();
+async function init(){{
+  try {{
+    const [bRes, pRes] = await Promise.all([
+      fetch('data/batters.json'),
+      fetch('data/pitchers.json'),
+    ]);
+    BRAW = await bRes.json();
+    PRAW = await pRes.json();
+  }} catch(e) {{
+    document.getElementById('loading-bar').textContent = 'Erro ao carregar dados.';
+    console.error('Erro ao carregar dados:', e);
+    return;
+  }}
+  document.getElementById('loading-bar').style.display = 'none';
+  renderKPIs();
+  renderBat();
+  renderPit();
+}}
+init();
 </script>
 </body>
 </html>"""
+
+    return html, b_records, p_records
 
 
 def main():
     print("Carregando dados...")
     db, dp = load_data()
 
-    print("Gerando HTML...")
+    print("Gerando HTML e dados...")
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    html = build_html(db, dp)
+    DATA_OUT_DIR = DOCS_DIR / "data"
+    DATA_OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    out = DOCS_DIR / "index.html"
-    out.write_text(html, encoding="utf-8")
-    print(f"Salvo em {out} ({len(html):,} chars)")
+    html, b_records, p_records = build_html(db, dp)
+
+    out_html = DOCS_DIR / "index.html"
+    out_html.write_text(html, encoding="utf-8")
+    print(f"  Salvo em {out_html} ({len(html):,} chars)")
+
+    out_bat = DATA_OUT_DIR / "batters.json"
+    out_bat.write_text(json.dumps(b_records, ensure_ascii=False), encoding="utf-8")
+    print(f"  Salvo em {out_bat} ({out_bat.stat().st_size / 1024 / 1024:.1f} MB)")
+
+    out_pit = DATA_OUT_DIR / "pitchers.json"
+    out_pit.write_text(json.dumps(p_records, ensure_ascii=False), encoding="utf-8")
+    print(f"  Salvo em {out_pit} ({out_pit.stat().st_size / 1024 / 1024:.1f} MB)")
 
 
 if __name__ == "__main__":
