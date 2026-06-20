@@ -90,7 +90,14 @@ def build_batters(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_pitchers(df: pd.DataFrame) -> pd.DataFrame:
-    """Agrega cubo de pitchers por jogo/situação."""
+    """Agrega cubo de pitchers por jogo/situação.
+
+    Importante: outs de baserunning (caught stealing, pickoff) não têm a
+    mesma granularidade de matchup que os pitches (sem batter_split,
+    men_on_base coerente, etc.), então são agregados separadamente por
+    pitcher+game_pk e somados ao final — caso contrário esses outs são
+    perdidos e o IP fica subestimado.
+    """
     df_pit = df[df["record_type"] == "pitch"].copy()
 
     # home_away_pitching é o inverso de home_away_batting
@@ -125,6 +132,33 @@ def build_pitchers(df: pd.DataFrame) -> pd.DataFrame:
         .reset_index()
         .drop(columns=["pitcher_id"])
     )
+
+    # Outs de baserunning (caught stealing, pickoff) não carregam a mesma
+    # granularidade de matchup dos pitches, então são somados à parte por
+    # pitcher+game_pk e distribuídos na primeira linha desse jogo.
+    df_base = df[df["record_type"] == "baserunning"].copy()
+    if not df_base.empty:
+        base_outs = (
+            df_base
+            .groupby(["pitcher", "game_pk"], dropna=False)["total_outs"]
+            .sum()
+            .reset_index()
+            .rename(columns={"total_outs": "baserunning_outs"})
+        )
+
+        # Identifica a primeira linha de cada pitcher+game_pk no agg para
+        # receber os outs extras (evita duplicar contagem em várias linhas).
+        first_idx = (
+            agg.sort_values(["pitcher", "game_pk"])
+            .groupby(["pitcher", "game_pk"])
+            .head(1)
+            .index
+        )
+        agg = agg.merge(base_outs, on=["pitcher", "game_pk"], how="left")
+        agg["baserunning_outs"] = agg["baserunning_outs"].fillna(0)
+        mask_first = agg.index.isin(first_idx)
+        agg.loc[mask_first, "total_outs"] += agg.loc[mask_first, "baserunning_outs"]
+        agg = agg.drop(columns=["baserunning_outs"])
 
     return agg
 
