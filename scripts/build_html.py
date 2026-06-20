@@ -1,15 +1,17 @@
 """
 build_html.py
 -------------
-Lê data/df_batters.csv e data/df_pitchers.csv e gera:
+Lê data/df_batters_<season>.csv e data/df_pitchers_<season>.csv
+(particionados por temporada pelo build_stats.py) e gera:
     - docs/index.html                    (estrutura/estilo/lógica, leve)
     - docs/data/batters_<season>.json    (um arquivo por temporada)
     - docs/data/pitchers_<season>.json   (um arquivo por temporada)
 
-Os dados são particionados por temporada para não esbarrar no limite de
-100MB por arquivo do GitHub conforme acumulamos mais anos de histórico.
-O HTML carrega via fetch() só a temporada selecionada no filtro de Ano,
-recarregando sob demanda quando o usuário troca de ano.
+Os dados são particionados por temporada (tanto entrada quanto saída) para
+não esbarrar no limite de 100MB por arquivo do GitHub conforme acumulamos
+mais anos de histórico. O HTML carrega via fetch() só a temporada
+selecionada no filtro de Ano, recarregando sob demanda quando o usuário
+troca de ano.
 
 Uso:
     python scripts/build_html.py
@@ -33,11 +35,51 @@ P_COLS = ["game_pk", "season", "ref", "game_type", "fielding_team", "batting_tea
           "BB", "IBB", "SO", "HBP", "SF", "total_outs"]
 
 
+def discover_seasons() -> list[int]:
+    """Descobre quais temporadas têm dados disponíveis, a partir dos
+    nomes dos arquivos particionados data/df_batters_<season>.csv."""
+    seasons = set()
+    for f in DATA_DIR.glob("df_batters_*.csv"):
+        try:
+            seasons.add(int(f.stem.replace("df_batters_", "")))
+        except ValueError:
+            continue
+    for f in DATA_DIR.glob("df_pitchers_*.csv"):
+        try:
+            seasons.add(int(f.stem.replace("df_pitchers_", "")))
+        except ValueError:
+            continue
+    return sorted(seasons)
+
+
+def load_season(season: int):
+    """Lê os CSVs particionados de uma temporada específica."""
+    b_path = DATA_DIR / f"df_batters_{season}.csv"
+    p_path = DATA_DIR / f"df_pitchers_{season}.csv"
+    db = pd.read_csv(b_path, low_memory=False) if b_path.exists() else pd.DataFrame()
+    dp = pd.read_csv(p_path, low_memory=False) if p_path.exists() else pd.DataFrame()
+    if not db.empty:
+        db["RBI"] = db["RBI"].fillna(0).astype(int)
+    if not dp.empty:
+        dp["total_outs"] = dp["total_outs"].fillna(0).astype(int)
+    return db, dp
+
+
 def load_data():
-    db = pd.read_csv(DATA_DIR / "df_batters.csv",  low_memory=False)
-    dp = pd.read_csv(DATA_DIR / "df_pitchers.csv", low_memory=False)
-    db["RBI"]        = db["RBI"].fillna(0).astype(int)
-    dp["total_outs"] = dp["total_outs"].fillna(0).astype(int)
+    """Lê e concatena todas as temporadas disponíveis (usado só para
+    construir a estrutura do HTML — filtros, anos disponíveis, etc.
+    Os dados completos por temporada são lidos separadamente em main()
+    para gerar os JSONs particionados sem manter tudo em memória)."""
+    seasons = discover_seasons()
+    b_parts, p_parts = [], []
+    for season in seasons:
+        db_s, dp_s = load_season(season)
+        if not db_s.empty:
+            b_parts.append(db_s)
+        if not dp_s.empty:
+            p_parts.append(dp_s)
+    db = pd.concat(b_parts, ignore_index=True) if b_parts else pd.DataFrame(columns=["season"])
+    dp = pd.concat(p_parts, ignore_index=True) if p_parts else pd.DataFrame(columns=["season"])
     return db, dp
 
 
@@ -565,11 +607,10 @@ def main():
 
     print("Gerando dados por temporada...")
     for season in seasons:
-        db_s = db[db["season"] == season]
-        dp_s = dp[dp["season"] == season]
+        db_s, dp_s = load_season(season)
 
-        b_records = db_s[[c for c in B_COLS if c in db_s.columns]].to_dict(orient="records")
-        p_records = dp_s[[c for c in P_COLS if c in dp_s.columns]].to_dict(orient="records")
+        b_records = db_s[[c for c in B_COLS if c in db_s.columns]].to_dict(orient="records") if not db_s.empty else []
+        p_records = dp_s[[c for c in P_COLS if c in dp_s.columns]].to_dict(orient="records") if not dp_s.empty else []
 
         out_bat = DATA_OUT_DIR / f"batters_{season}.json"
         out_bat.write_text(json.dumps(b_records, ensure_ascii=False), encoding="utf-8")

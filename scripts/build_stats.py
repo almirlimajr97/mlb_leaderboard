@@ -1,9 +1,11 @@
 """
 build_stats.py
 --------------
-Lê todos os CSVs de data/raw/, agrega e gera:
-    - data/df_batters.csv
-    - data/df_pitchers.csv
+Lê todos os CSVs de data/raw/, agrega e gera (particionado por temporada,
+para não esbarrar no limite de tamanho de arquivo do GitHub conforme o
+histórico cresce):
+    - data/df_batters_<season>.csv
+    - data/df_pitchers_<season>.csv
 
 Uso:
     python scripts/build_stats.py
@@ -60,7 +62,7 @@ def build_batters(df: pd.DataFrame) -> pd.DataFrame:
     agg = (
         df_bat
         .groupby([
-            "season", "ref", "game_pk", "game_date",
+            "season", "ref", "game_pk", "game_date", "game_type",
             "batting_team", "fielding_team",
             "batter", "batter_id", "bat_side", "batter_split",
             "men_on_base", "pitcher", "pitcher_id",
@@ -108,7 +110,7 @@ def build_pitchers(df: pd.DataFrame) -> pd.DataFrame:
     agg = (
         df_pit
         .groupby([
-            "season", "ref", "game_pk", "game_date",
+            "season", "ref", "game_pk", "game_date", "game_type",
             "fielding_team", "batting_team",
             "pitcher", "pitcher_id", "pitch_hand", "pitcher_split",
             "men_on_base", "batter",
@@ -169,15 +171,26 @@ def main():
 
     print("\nAgregando batters...")
     df_batters = build_batters(df)
-    out_bat = DATA_DIR / "df_batters.csv"
-    df_batters.to_csv(out_bat, index=False)
-    print(f"  Salvo em {out_bat} ({len(df_batters)} linhas)")
 
     print("\nAgregando pitchers...")
     df_pitchers = build_pitchers(df)
-    out_pit = DATA_DIR / "df_pitchers.csv"
-    df_pitchers.to_csv(out_pit, index=False)
-    print(f"  Salvo em {out_pit} ({len(df_pitchers)} linhas)")
+
+    seasons = sorted(set(
+        df_batters["season"].dropna().astype(int).unique().tolist() +
+        df_pitchers["season"].dropna().astype(int).unique().tolist()
+    ))
+
+    print(f"\nSalvando por temporada ({len(seasons)} encontrada(s))...")
+    for season in seasons:
+        b_season = df_batters[df_batters["season"] == season]
+        out_bat = DATA_DIR / f"df_batters_{season}.csv"
+        b_season.to_csv(out_bat, index=False)
+
+        p_season = df_pitchers[df_pitchers["season"] == season]
+        out_pit = DATA_DIR / f"df_pitchers_{season}.csv"
+        p_season.to_csv(out_pit, index=False)
+
+        print(f"  {season}: batters={len(b_season)} linhas, pitchers={len(p_season)} linhas")
 
     print("\nConcluído!")
 
