@@ -27,17 +27,25 @@ def load_data():
 
 
 def build_html(db: pd.DataFrame, dp: pd.DataFrame) -> str:
-    teams = sorted(set(
-        db["batting_team"].dropna().unique().tolist() +
-        dp["fielding_team"].dropna().unique().tolist()
+    seasons = sorted(set(
+        db["season"].dropna().astype(int).unique().tolist() +
+        dp["season"].dropna().astype(int).unique().tolist()
     ))
-    teams_opts = "".join(f"<option>{t}</option>" for t in teams)
+    seasons_opts = "".join(f'<option>{s}</option>' for s in seasons)
+    latest_season = seasons[-1] if seasons else ""
 
-    b_cols = ["game_pk", "batting_team", "fielding_team", "batter", "bat_side", "batter_split",
+    MONTH_NAMES = {
+        "01": "Janeiro", "02": "Fevereiro", "03": "Março", "04": "Abril",
+        "05": "Maio", "06": "Junho", "07": "Julho", "08": "Agosto",
+        "09": "Setembro", "10": "Outubro", "11": "Novembro", "12": "Dezembro",
+    }
+    month_names_json = json.dumps(MONTH_NAMES, ensure_ascii=False)
+
+    b_cols = ["game_pk", "season", "ref", "batting_team", "fielding_team", "batter", "bat_side", "batter_split",
               "men_on_base", "pitcher", "day_night", "home_away_batting",
               "PA", "AB", "H", "singles", "doubles", "triples", "HR",
               "RBI", "BB", "IBB", "SO", "HBP", "SF"]
-    p_cols = ["game_pk", "fielding_team", "batting_team", "pitcher", "pitch_hand", "pitcher_split",
+    p_cols = ["game_pk", "season", "ref", "fielding_team", "batting_team", "pitcher", "pitch_hand", "pitcher_split",
               "men_on_base", "batter", "day_night", "home_away_pitching",
               "BF", "AB", "H", "singles", "doubles", "triples", "HR",
               "BB", "IBB", "SO", "HBP", "SF", "total_outs"]
@@ -148,8 +156,10 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
 <div class="page" id="page-bat">
   <div class="filters">
     <div class="fg"><label>Jogador</label><input id="b-q" placeholder="Buscar..."/></div>
-    <div class="fg"><label>Time (bat)</label><select id="b-tm"><option value="">Todos</option>{teams_opts}</select></div>
-    <div class="fg"><label>Adversário</label><select id="b-ft"><option value="">Todos</option>{teams_opts}</select></div>
+    <div class="fg"><label>Ano</label><select id="b-season">{seasons_opts}</select></div>
+    <div class="fg"><label>Mês</label><select id="b-ref"><option value="">Todos</option></select></div>
+    <div class="fg"><label>Time (bat)</label><select id="b-tm"><option value="">Todos</option></select></div>
+    <div class="fg"><label>Adversário</label><select id="b-ft"><option value="">Todos</option></select></div>
     <div class="fg"><label>Lado</label><select id="b-bs"><option value="">Ambos</option><option value="R">Direita (R)</option><option value="L">Esquerda (L)</option></select></div>
     <div class="fg"><label>Split</label><select id="b-sp"><option value="">Todos</option><option value="vs_RHP">vs RHP</option><option value="vs_LHP">vs LHP</option></select></div>
     <div class="fg"><label>Situação</label><select id="b-mo"><option value="">Todas</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
@@ -164,8 +174,10 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
 <div class="page" id="page-pit">
   <div class="filters">
     <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Buscar..."/></div>
-    <div class="fg"><label>Time (pit)</label><select id="p-tm"><option value="">Todos</option>{teams_opts}</select></div>
-    <div class="fg"><label>Adversário</label><select id="p-ft"><option value="">Todos</option>{teams_opts}</select></div>
+    <div class="fg"><label>Ano</label><select id="p-season">{seasons_opts}</select></div>
+    <div class="fg"><label>Mês</label><select id="p-ref"><option value="">Todos</option></select></div>
+    <div class="fg"><label>Time (pit)</label><select id="p-tm"><option value="">Todos</option></select></div>
+    <div class="fg"><label>Adversário</label><select id="p-ft"><option value="">Todos</option></select></div>
     <div class="fg"><label>Mão</label><select id="p-ph"><option value="">Ambas</option><option value="R">Direita (R)</option><option value="L">Esquerda (L)</option></select></div>
     <div class="fg"><label>Split</label><select id="p-sp"><option value="">Todos</option><option value="vs_RHB">vs RHB</option><option value="vs_LHB">vs LHB</option></select></div>
     <div class="fg"><label>Situação</label><select id="p-mo"><option value="">Todas</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
@@ -180,8 +192,43 @@ td:nth-child(2){{text-align:left;font-weight:500;color:var(--text);white-space:n
 <script>
 const BRAW={b_json};
 const PRAW={p_json};
+const MONTH_NAMES={month_names_json};
 let sortBatK='PA', sortBatAsc=false;
 let sortPitK='BF', sortPitAsc=false;
+
+function refLabel(ref){{
+  const s=String(ref);
+  const yyyy=s.slice(0,4), mm=s.slice(4,6);
+  return (MONTH_NAMES[mm]||mm)+'/'+yyyy;
+}}
+
+// Repopula Mês/Time/Adversário com base no Ano selecionado, preservando
+// a seleção atual quando ainda válida (ex: time que existe nos dois anos).
+function refreshDependentFilters(prefix, rawData, teamField, oppField){{
+  const seasonVal = document.getElementById(prefix+'-season').value;
+  const scoped = seasonVal ? rawData.filter(r=>String(r.season)===seasonVal) : rawData;
+
+  const refSel = document.getElementById(prefix+'-ref');
+  const curRef = refSel.value;
+  const refs = [...new Set(scoped.map(r=>String(r.ref)))].sort();
+  refSel.innerHTML = '<option value="">Todos</option>' +
+    refs.map(r=>`<option value="${{r}}">${{refLabel(r)}}</option>`).join('');
+  if(refs.includes(curRef)) refSel.value = curRef;
+
+  const tmSel = document.getElementById(prefix+'-tm');
+  const curTm = tmSel.value;
+  const teams = [...new Set(scoped.map(r=>r[teamField]).filter(Boolean))].sort();
+  tmSel.innerHTML = '<option value="">Todos</option>' +
+    teams.map(t=>`<option>${{t}}</option>`).join('');
+  if(teams.includes(curTm)) tmSel.value = curTm;
+
+  const ftSel = document.getElementById(prefix+'-ft');
+  const curFt = ftSel.value;
+  const opps = [...new Set(scoped.map(r=>r[oppField]).filter(Boolean))].sort();
+  ftSel.innerHTML = '<option value="">Todos</option>' +
+    opps.map(t=>`<option>${{t}}</option>`).join('');
+  if(opps.includes(curFt)) ftSel.value = curFt;
+}}
 
 function fmt3(v){{ return v===0?'.000':v.toFixed(3).replace('0.','.'); }}
 function fmtPct(v){{ return (v*100).toFixed(1)+'%'; }}
@@ -251,8 +298,11 @@ function top5(rows,key,asc=false){{
 }}
 
 function renderKPIs(){{
-  const batAgg = aggBat(BRAW).filter(a=>a.PA>=MIN_PA_KPI);
-  const pitAgg = aggPit(PRAW).filter(a=>a.BF>=MIN_BF_KPI);
+  const latestSeason = '{latest_season}';
+  const batScoped = BRAW.filter(r=>String(r.season)===latestSeason);
+  const pitScoped = PRAW.filter(r=>String(r.season)===latestSeason);
+  const batAgg = aggBat(batScoped).filter(a=>a.PA>=MIN_PA_KPI);
+  const pitAgg = aggPit(pitScoped).filter(a=>a.BF>=MIN_BF_KPI);
 
   document.getElementById('kpi-bat').innerHTML = [
     kpiCard('Home runs','ti-ball-baseball',top5(batAgg,'HR'),'HR',v=>v),
@@ -270,7 +320,10 @@ function renderKPIs(){{
 }}
 
 function renderBat(){{
+  refreshDependentFilters('b', BRAW, 'batting_team', 'fielding_team');
   const q=document.getElementById('b-q').value.toLowerCase();
+  const season=document.getElementById('b-season').value;
+  const ref=document.getElementById('b-ref').value;
   const tm=document.getElementById('b-tm').value;
   const ft=document.getElementById('b-ft').value;
   const bs=document.getElementById('b-bs').value;
@@ -281,6 +334,7 @@ function renderBat(){{
 
   let rows=BRAW.filter(r=>
     (!q||r.batter.toLowerCase().includes(q))&&
+    (!season||String(r.season)===season)&&(!ref||String(r.ref)===ref)&&
     (!tm||r.batting_team===tm)&&(!ft||r.fielding_team===ft)&&
     (!bs||r.bat_side===bs)&&(!sp||r.batter_split===sp)&&
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_batting===ha)
@@ -329,7 +383,10 @@ function bindSortBat(){{
 }}
 
 function renderPit(){{
+  refreshDependentFilters('p', PRAW, 'fielding_team', 'batting_team');
   const q=document.getElementById('p-q').value.toLowerCase();
+  const season=document.getElementById('p-season').value;
+  const ref=document.getElementById('p-ref').value;
   const tm=document.getElementById('p-tm').value;
   const ft=document.getElementById('p-ft').value;
   const ph=document.getElementById('p-ph').value;
@@ -340,6 +397,7 @@ function renderPit(){{
 
   let rows=PRAW.filter(r=>
     (!q||r.pitcher.toLowerCase().includes(q))&&
+    (!season||String(r.season)===season)&&(!ref||String(r.ref)===ref)&&
     (!tm||r.fielding_team===tm)&&(!ft||r.batting_team===ft)&&
     (!ph||r.pitch_hand===ph)&&(!sp||r.pitcher_split===sp)&&
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_pitching===ha)
@@ -417,12 +475,15 @@ themeToggle.addEventListener('click', ()=>{{
   applyTheme(cur==='light' ? 'dark' : 'light');
 }});
 
-['b-q','b-tm','b-ft','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
+['b-q','b-season','b-ref','b-tm','b-ft','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
   document.getElementById(id).addEventListener('input',renderBat)
 );
-['p-q','p-tm','p-ft','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
+['p-q','p-season','p-ref','p-tm','p-ft','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
   document.getElementById(id).addEventListener('input',renderPit)
 );
+
+document.getElementById('b-season').value = '{latest_season}';
+document.getElementById('p-season').value = '{latest_season}';
 
 renderKPIs();
 renderBat();
