@@ -1,7 +1,7 @@
 """
 fetch_data.py
 -------------
-Busca play-by-play de todos os jogos de uma data e salva em data/raw/YYYY-MM-DD.csv
+Busca play-by-play de todos os jogos de uma data e salva em data/raw/YYYY-MM-DD.parquet
 
 Uso:
     python scripts/fetch_data.py --date 2026-03-25
@@ -262,8 +262,8 @@ def main():
     df_day = pd.concat(all_dfs, ignore_index=True)
 
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RAW_DIR / f"{game_date}.csv"
-    df_day.to_csv(out_path, index=False)
+    out_path = RAW_DIR / f"{game_date}.parquet"
+    df_day.to_parquet(out_path, index=False)
     print(f"\nSalvo em {out_path} ({len(df_day)} linhas)")
 
 

@@ -1,11 +1,11 @@
 """
 build_stats.py
 --------------
-Lê todos os CSVs de data/raw/, agrega e gera (particionado por temporada,
-para não esbarrar no limite de tamanho de arquivo do GitHub conforme o
-histórico cresce):
-    - data/df_batters_<season>.csv
-    - data/df_pitchers_<season>.csv
+Lê todos os Parquets de data/raw/, agrega e gera (particionado por
+temporada, para não esbarrar no limite de tamanho de arquivo do GitHub
+conforme o histórico cresce):
+    - data/df_batters_<season>.parquet
+    - data/df_pitchers_<season>.parquet
 
 Uso:
     python scripts/build_stats.py
@@ -31,16 +31,16 @@ EXCLUDE_PA = "Pickoff|Caught Stealing|Runner Out|Balk|Wild Pitch|Stolen Base"
 
 
 def load_raw() -> pd.DataFrame:
-    """Lê e concatena todos os CSVs de data/raw/."""
-    files = sorted(RAW_DIR.glob("*.csv"))
+    """Lê e concatena todos os Parquets de data/raw/."""
+    files = sorted(RAW_DIR.glob("*.parquet"))
     if not files:
-        raise FileNotFoundError(f"Nenhum CSV encontrado em {RAW_DIR}")
+        raise FileNotFoundError(f"Nenhum Parquet encontrado em {RAW_DIR}")
 
     print(f"Carregando {len(files)} arquivo(s)...")
     dfs = []
     for f in files:
         try:
-            dfs.append(pd.read_csv(f, low_memory=False))
+            dfs.append(pd.read_parquet(f))
         except Exception as e:
             print(f"  ⚠ Erro ao ler {f.name}: {e}")
 
@@ -214,12 +214,12 @@ def main():
     print(f"\nSalvando por temporada ({len(seasons)} encontrada(s))...")
     for season in seasons:
         b_season = df_batters[df_batters["season"] == season]
-        out_bat = DATA_DIR / f"df_batters_{season}.csv"
-        b_season.to_csv(out_bat, index=False)
+        out_bat = DATA_DIR / f"df_batters_{season}.parquet"
+        b_season.to_parquet(out_bat, index=False)
 
         p_season = df_pitchers[df_pitchers["season"] == season]
-        out_pit = DATA_DIR / f"df_pitchers_{season}.csv"
-        p_season.to_csv(out_pit, index=False)
+        out_pit = DATA_DIR / f"df_pitchers_{season}.parquet"
+        p_season.to_parquet(out_pit, index=False)
 
         print(f"  {season}: batters={len(b_season)} linhas, pitchers={len(p_season)} linhas")
 

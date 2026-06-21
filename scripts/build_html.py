@@ -1,7 +1,7 @@
 """
 build_html.py
 -------------
-Lê data/df_batters_<season>.csv e data/df_pitchers_<season>.csv
+Lê data/df_batters_<season>.parquet e data/df_pitchers_<season>.parquet
 (particionados por temporada pelo build_stats.py) e gera:
     - docs/index.html                    (estrutura/estilo/lógica, leve)
     - docs/data/batters_<season>.json    (um arquivo por temporada)
@@ -39,14 +39,14 @@ P_COLS = ["game_pk", "season", "ref", "game_type", "series_description", "venue"
 
 def discover_seasons() -> list[int]:
     """Descobre quais temporadas têm dados disponíveis, a partir dos
-    nomes dos arquivos particionados data/df_batters_<season>.csv."""
+    nomes dos arquivos particionados data/df_batters_<season>.parquet."""
     seasons = set()
-    for f in DATA_DIR.glob("df_batters_*.csv"):
+    for f in DATA_DIR.glob("df_batters_*.parquet"):
         try:
             seasons.add(int(f.stem.replace("df_batters_", "")))
         except ValueError:
             continue
-    for f in DATA_DIR.glob("df_pitchers_*.csv"):
+    for f in DATA_DIR.glob("df_pitchers_*.parquet"):
         try:
             seasons.add(int(f.stem.replace("df_pitchers_", "")))
         except ValueError:
@@ -55,11 +55,11 @@ def discover_seasons() -> list[int]:
 
 
 def load_season(season: int):
-    """Lê os CSVs particionados de uma temporada específica."""
-    b_path = DATA_DIR / f"df_batters_{season}.csv"
-    p_path = DATA_DIR / f"df_pitchers_{season}.csv"
-    db = pd.read_csv(b_path, low_memory=False) if b_path.exists() else pd.DataFrame()
-    dp = pd.read_csv(p_path, low_memory=False) if p_path.exists() else pd.DataFrame()
+    """Lê os Parquets particionados de uma temporada específica."""
+    b_path = DATA_DIR / f"df_batters_{season}.parquet"
+    p_path = DATA_DIR / f"df_pitchers_{season}.parquet"
+    db = pd.read_parquet(b_path) if b_path.exists() else pd.DataFrame()
+    dp = pd.read_parquet(p_path) if p_path.exists() else pd.DataFrame()
     if not db.empty:
         db["RBI"] = db["RBI"].fillna(0).astype(int)
     if not dp.empty:
