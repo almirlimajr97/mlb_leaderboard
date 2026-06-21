@@ -538,7 +538,7 @@ function renderBat(){{
     <td class="${{cls(d.SLG,.45,.35)}}">${{fmt3(d.SLG)}}</td>
     <td class="${{cls(d.OPS,.9,.7)}}">${{fmt3(d.OPS)}}</td>
     <td class="${{cls(d.BBpct,.12,.07)}}">${{fmtPct(d.BBpct)}}</td>
-    <td class="${{cls(d.Kpct,.30,.18,true)}}">${{fmtPct(d.Kpct)}}</td>
+    <td class="${{cls(d.Kpct,.18,.30,true)}}">${{fmtPct(d.Kpct)}}</td>
   </tr>`).join('');
 }}
 
@@ -608,12 +608,12 @@ function renderPit(){{
     <td>${{d.H}}</td><td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
     <td>${{d.BB}}</td><td>${{d.IBB}}</td><td>${{d.SO}}</td>
     <td>${{d.HBP}}</td><td>${{d.SF}}</td>
-    <td class="${{cls(d.BAA,.3,.22,true)}}">${{fmt3(d.BAA)}}</td>
-    <td class="${{cls(d.OBP,.36,.30,true)}}">${{fmt3(d.OBP)}}</td>
-    <td class="${{cls(d.SLG,.45,.35,true)}}">${{fmt3(d.SLG)}}</td>
-    <td class="${{cls(d.OPS,.9,.7,true)}}">${{fmt3(d.OPS)}}</td>
+    <td class="${{cls(d.BAA,.22,.30,true)}}">${{fmt3(d.BAA)}}</td>
+    <td class="${{cls(d.OBP,.30,.36,true)}}">${{fmt3(d.OBP)}}</td>
+    <td class="${{cls(d.SLG,.35,.45,true)}}">${{fmt3(d.SLG)}}</td>
+    <td class="${{cls(d.OPS,.7,.9,true)}}">${{fmt3(d.OPS)}}</td>
     <td class="${{cls(d.Kpct,.25,.18)}}">${{fmtPct(d.Kpct)}}</td>
-    <td class="${{cls(d.BBpct,.1,.08,true)}}">${{fmtPct(d.BBpct)}}</td>
+    <td class="${{cls(d.BBpct,.08,.1,true)}}">${{fmtPct(d.BBpct)}}</td>
     <td class="${{cls(d.WHIP,1.10,1.30,true)}}">${{d.WHIP.toFixed(2)}}</td>
   </tr>`).join('');
 }}
