@@ -95,14 +95,27 @@ def load_raw() -> pd.DataFrame:
 
 
 def calc_total_outs(df: pd.DataFrame) -> pd.DataFrame:
-    """Calcula total_outs por linha caso não exista ou precise ser recalculado."""
+    """Calcula total_outs por linha caso não exista ou precise ser recalculado.
+
+    A lógica de baserunning replica a fórmula usada antes em R: eventos
+    "Caught Stealing"/"Runner Out" sempre contam como 1 out (são
+    inequivocamente outs pelo próprio nome — não existe versão sem out
+    desses eventos específicos). "Pickoff" só conta como out quando
+    is_out=True na API (pode terminar em out ou não). Qualquer outro
+    evento de baserunning capturado (Wild Pitch, Balk, Stolen Base bem-
+    sucedido) não gera out — está na base só para contexto/registro.
+    """
+    is_caught_or_runner_out = df["event"].str.contains("Caught|Runner Out", na=False)
+    is_pickoff_out = df["event"].str.contains("Pickoff", na=False) & (df["is_out"] == True)
+
     conditions = [
         (df["record_type"] == "pitch") & df["event"].str.contains("Triple Play", na=False),
         (df["record_type"] == "pitch") & df["event"].str.contains("Double Play|Grounded Into DP", na=False),
         (df["record_type"] == "pitch") & (df["is_out"] == True),
-        (df["record_type"] == "baserunning") & (df["is_out"] == True),
+        (df["record_type"] == "baserunning") & is_caught_or_runner_out,
+        (df["record_type"] == "baserunning") & is_pickoff_out,
     ]
-    df["total_outs"] = np.select(conditions, [3, 2, 1, 1], default=0)
+    df["total_outs"] = np.select(conditions, [3, 2, 1, 1, 1], default=0)
     return df
 
 

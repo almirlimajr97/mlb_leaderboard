@@ -163,33 +163,24 @@ def get_play_by_play(game_pk: int) -> pd.DataFrame:
                 "hardness":           hit_data.get("hardness"),
             })
 
-        # ── Baserunning com out ─────────────────────────────
-        # Não confiamos só no campo details.isOut da API para alguns
-        # eventos: encontramos um caso real ("Caught Stealing 3B" do
+        # ── Baserunning ──────────────────────────────────────
+        # Captura toda jogada de baserunning relevante por padrão de texto
+        # no nome do evento (Pickoff, Caught, Out, Balk, Wild Pitch,
+        # Stolen) — mesma lógica usada antes em R. Não filtramos aqui por
+        # isOut: encontramos casos reais (ex: "Caught Stealing 3B" do
         # Garrett Crochet em 2025-07-20, game_pk 777075) onde a API retorna
-        # isOut=false numa jogada que é INEQUIVOCAMENTE um out pelo próprio
-        # nome do evento (Caught Stealing/Pickoff/Runner Out só acontecem
-        # quando o corredor é eliminado — não existe versão "sem sucesso"
-        # desses eventos específicos, diferente de Stolen Base).
-        #
-        # Já Wild Pitch e Balk são diferentes: na maioria das vezes NÃO são
-        # out (só avanço de corredores), mas raramente podem resultar em
-        # out (ex: corredor tenta avançar demais e é eliminado). Para esses
-        # dois, continuamos exigindo isOut=true da API, já que usar só o
-        # nome do evento inflaria os outs nos ~99% dos casos sem out.
-        ALWAYS_OUT_EVENTS      = re.compile(r"Caught Stealing|Pickoff|Runner Out")
-        SOMETIMES_OUT_EVENTS   = re.compile(r"Wild Pitch|Balk")
+        # isOut=false numa jogada que é um out de verdade. A decisão de
+        # quantos outs cada tipo de evento vale fica a cargo do
+        # calc_total_outs() no build_stats.py — aqui só garantimos que a
+        # linha existe na base bruta para ser avaliada depois.
+        BASERUNNING_EVENTS = re.compile(r"Pickoff|Caught|Out|Balk|Wild Pitch|Stolen")
         for event in all_events:
             if event.get("type") != "action":
                 continue
             details_a = event.get("details", {})
             event_name = details_a.get("event") or ""
-            is_out_flag = bool(details_a.get("isOut"))
 
-            is_always_out    = bool(ALWAYS_OUT_EVENTS.search(event_name))
-            is_sometimes_out = bool(SOMETIMES_OUT_EVENTS.search(event_name)) and is_out_flag
-
-            if is_always_out or is_sometimes_out:
+            if BASERUNNING_EVENTS.search(event_name):
                 count_a   = event.get("count", {})
                 rows.append({
                     "record_type":        "baserunning",
@@ -218,9 +209,9 @@ def get_play_by_play(game_pk: int) -> pd.DataFrame:
                     "event":              details_a.get("event"),
                     "event_type":         details_a.get("eventType"),
                     "rbi":                0,
-                    "is_out":             True,
+                    "is_out":             bool(details_a.get("isOut")),
                     "is_scoring":         details_a.get("isScoringPlay"),
-                    "total_outs":         1,
+                    "total_outs":         None,
                     "description":        details_a.get("description"),
                     "pitch_type":         None, "pitch_call":       None,
                     "speed_mph":          None, "spin_rate":        None,
