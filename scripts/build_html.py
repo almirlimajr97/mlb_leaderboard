@@ -135,9 +135,9 @@ def build_html(db: pd.DataFrame, dp: pd.DataFrame):
   --row-hover:#FBFAF8;
 }}
 *{{box-sizing:border-box;margin:0;padding:0}}
-body{{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:13px;-webkit-font-smoothing:antialiased;transition:background .15s,color .15s}}
+body{{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:13px;-webkit-font-smoothing:antialiased;transition:background .15s,color .15s;display:flex;flex-direction:column}}
 
-header{{height:52px;padding:0 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.25rem;flex-wrap:nowrap;position:sticky;top:0;background:var(--surface);z-index:20}}
+header{{height:52px;padding:0 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.25rem;flex-wrap:nowrap;position:sticky;top:0;background:var(--surface);z-index:20;flex-shrink:0}}
 .title-block{{display:flex;align-items:baseline;gap:8px;white-space:nowrap}}
 header h1{{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--text)}}
 .last-updated{{font-family:var(--mono);font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;white-space:nowrap}}
@@ -150,7 +150,7 @@ nav{{display:flex;gap:2px;margin-left:auto}}
 .theme-toggle{{width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-left:12px}}
 .theme-toggle:hover{{color:var(--accent);border-color:var(--accent)}}
 
-.app{{display:flex;min-height:calc(100vh - 52px)}}
+.app{{display:flex;min-height:0;padding-bottom:52px}}
 .filters-sidebar{{width:200px;background:var(--surface);border-right:1px solid var(--border);flex-shrink:0;padding:16px 14px;display:none}}
 .filters-sidebar.active{{display:block}}
 .fs-title{{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}}
@@ -185,7 +185,7 @@ input::placeholder{{color:var(--text3)}}
 .kpi-row:first-child .val{{color:var(--accent)}}
 
 .info-bar{{font-family:var(--mono);font-size:11px;color:var(--text2);margin-bottom:10px}}
-footer{{height:52px;padding:0 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.25rem;flex-wrap:nowrap;background:var(--surface);margin-top:24px}}
+footer{{height:52px;padding:0 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.25rem;flex-wrap:nowrap;background:var(--surface);flex-shrink:0;position:fixed;bottom:0;left:0;right:0;z-index:20}}
 .footer-text{{font-family:var(--mono);font-size:11px;color:var(--text2)}}
 .footer-links{{display:flex;align-items:center;gap:16px;margin-left:auto}}
 .footer-links a{{color:var(--text2);font-family:var(--mono);font-size:11px;text-decoration:none;transition:.15s}}
