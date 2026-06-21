@@ -185,6 +185,11 @@ input::placeholder{{color:var(--text3)}}
 .kpi-row:first-child .val{{color:var(--accent)}}
 
 .info-bar{{font-family:var(--mono);font-size:11px;color:var(--text2);margin-bottom:10px}}
+footer{{height:52px;padding:0 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.25rem;flex-wrap:nowrap;background:var(--surface);margin-top:24px}}
+.footer-text{{font-family:var(--mono);font-size:11px;color:var(--text2)}}
+.footer-links{{display:flex;align-items:center;gap:8px;margin-left:auto}}
+.footer-links a{{color:var(--text2);display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;transition:.15s;font-size:16px}}
+.footer-links a:hover{{color:var(--accent);background:var(--surface2)}}
 .info-bar b{{color:var(--text)}}
 
 .wrap{{overflow-x:auto;border:1px solid var(--border);border-radius:6px}}
@@ -289,6 +294,14 @@ tbody tr:nth-child(even){{background:rgba(128,128,128,.02)}}
     </div>
   </div>
 </div>
+
+<footer>
+  <span class="footer-text">Built by Almir Lima Jr. · Data: MLB Stats API</span>
+  <div class="footer-links">
+    <a href="https://github.com/almirlimajr97/mlb_leaderboard" target="_blank" rel="noopener" aria-label="GitHub"><i class="ti ti-brand-github" aria-hidden="true"></i></a>
+    <a href="mailto:almirlimajr97@icloud.com" aria-label="Email"><i class="ti ti-mail" aria-hidden="true"></i></a>
+  </div>
+</footer>
 
 <script>
 let BRAW=[], PRAW=[];
@@ -453,17 +466,17 @@ function renderKPIs(){{
   const pitAgg = aggPit(pitScoped).filter(a=>a.BF>=MIN_BF_KPI);
 
   document.getElementById('kpi-bat').innerHTML = [
-    kpiCard('Home runs','ti-ball-baseball',top5(batAgg,'HR'),'HR',v=>v),
-    kpiCard('Average (AVG)','ti-chart-bar',top5(batAgg,'AVG'),'AVG',fmt3),
     kpiCard('OPS','ti-bolt',top5(batAgg,'OPS'),'OPS',fmt3),
+    kpiCard('Hits (H)','ti-baseball-bat',top5(batAgg,'H'),'H',v=>v),
+    kpiCard('Home runs','ti-ball-baseball',top5(batAgg,'HR'),'HR',v=>v),
     kpiCard('RBI','ti-flag',top5(batAgg,'RBI'),'RBI',v=>v),
   ].join('');
 
   document.getElementById('kpi-pit').innerHTML = [
-    kpiCard('Strikeouts (K)','ti-target',top5(pitAgg,'SO'),'SO',v=>v),
+    kpiCard('Innings (IP)','ti-clock',top5(pitAgg,'outs'),'outs',v=>fmtIP(v)),
+    kpiCard('OPS against (lowest)','ti-shield-check',top5(pitAgg,'OPS',true),'OPS',fmt3),
     kpiCard('K%','ti-percentage',top5(pitAgg,'Kpct'),'Kpct',fmtPct),
     kpiCard('BAA (lowest)','ti-shield',top5(pitAgg,'BAA',true),'BAA',fmt3),
-    kpiCard('Innings (IP)','ti-clock',top5(pitAgg,'outs'),'outs',v=>fmtIP(v)),
   ].join('');
 }}
 
