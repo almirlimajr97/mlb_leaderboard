@@ -433,11 +433,10 @@ const MIN_BF_KPI = {MIN_BF_KPI};
 
 function kpiCard(label, icon, sorted, key, fmt){{
   return `<div class="kpi-card">
-    <i class="ti ${{icon}} kpi-icon" aria-hidden="true"></i>
-    <div class="kpi-label">${{label}}</div>
+    <div class="hd"><i class="ti ${{icon}}" aria-hidden="true"></i>${{label}}</div>
     ${{sorted.map((d,i)=>`<div class="kpi-row">
-      <span><span class="kpi-rank">${{i+1}}</span><span class="kpi-name">${{d.batter||d.pitcher}}</span></span>
-      <span class="kpi-value">${{fmt(d[key])}}</span>
+      <span class="rank">${{i+1}}</span><span class="name">${{d.batter||d.pitcher}}</span>
+      <span class="val">${{fmt(d[key])}}</span>
     </div>`).join('')}}
   </div>`;
 }}
