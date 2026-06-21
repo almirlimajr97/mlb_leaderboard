@@ -270,9 +270,9 @@ tbody tr:nth-child(even){{background:rgba(128,128,128,.02)}}
 
   <div class="main">
     <div class="page active" id="page-overview">
-      <div class="section-title">Batting leaders<span class="yr">· {season}</span><span class="min">· min. {MIN_PA_KPI} PA</span></div>
+      <div class="section-title">Batting leaders<span class="yr">· {season} ·</span><span class="min">min. {MIN_PA_KPI} PA</span></div>
       <div class="kpi-grid" id="kpi-bat"></div>
-      <div class="section-title">Pitching leaders<span class="yr">· {season}</span><span class="min">· min. {MIN_BF_KPI} BF</span></div>
+      <div class="section-title">Pitching leaders<span class="yr">· {season} ·</span><span class="min">min. {MIN_BF_KPI} BF</span></div>
       <div class="kpi-grid" id="kpi-pit"></div>
     </div>
 
