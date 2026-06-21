@@ -205,7 +205,7 @@ tbody td:nth-child(2){{text-align:left;color:var(--text);font-weight:500}}
 tbody tr:hover{{background:var(--row-hover)}}
 tbody tr:nth-child(even){{background:rgba(128,128,128,.02)}}
 .hi{{color:var(--hi);font-weight:600}}
-.md{{color:var(--md);font-weight:500}}
+.md{{color:var(--text2);font-weight:500}}
 .lo{{color:var(--bad)}}
 .empty{{text-align:center;color:var(--text3);padding:3rem;font-size:14px;font-family:var(--mono)}}
 </style>
