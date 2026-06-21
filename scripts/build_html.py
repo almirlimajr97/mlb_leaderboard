@@ -415,7 +415,9 @@ function aggBat(rows){{
     const avg=a.AB>0?a.H/a.AB:0;
     const obp=(a.AB+a.BB+a.IBB+a.HBP+a.SF)>0?(a.H+a.BB+a.IBB+a.HBP)/(a.AB+a.BB+a.IBB+a.HBP+a.SF):0;
     const slg=a.AB>0?(a.singles+2*a.doubles+3*a.triples+4*a.HR)/a.AB:0;
-    return {{...a,G:a.games.size,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3)}};
+    const bbpct=a.PA>0?a.BB/a.PA:0;
+    const kpct=a.PA>0?a.SO/a.PA:0;
+    return {{...a,G:a.games.size,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),BBpct:+bbpct.toFixed(3),Kpct:+kpct.toFixed(3)}};
   }});
 }}
 
@@ -437,7 +439,9 @@ function aggPit(rows){{
     const slg=a.AB>0?(a.singles+2*a.doubles+3*a.triples+4*a.HR)/a.AB:0;
     const kpct=a.BF>0?a.SO/a.BF:0;
     const bbpct=a.BF>0?(a.BB+a.IBB)/a.BF:0;
-    return {{...a,G:a.games.size,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3)}};
+    const ip=a.outs/3;
+    const whip=ip>0?(a.BB+a.IBB+a.H)/ip:0;
+    return {{...a,G:a.games.size,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3),WHIP:+whip.toFixed(2)}};
   }});
 }}
 
@@ -476,7 +480,7 @@ function renderKPIs(){{
     kpiCard('Innings (IP)','ti-clock',top5(pitAgg,'outs'),'outs',v=>fmtIP(v)),
     kpiCard('OPS against (lowest)','ti-shield-check',top5(pitAgg,'OPS',true),'OPS',fmt3),
     kpiCard('K%','ti-percentage',top5(pitAgg,'Kpct'),'Kpct',fmtPct),
-    kpiCard('BAA (lowest)','ti-shield',top5(pitAgg,'BAA',true),'BAA',fmt3),
+    kpiCard('WHIP (lowest)','ti-shield',top5(pitAgg,'WHIP',true),'WHIP',v=>v.toFixed(2)),
   ].join('');
 }}
 
@@ -516,6 +520,7 @@ function renderBat(){{
     <th data-k="RBI">RBI</th><th data-k="BB">BB</th><th data-k="IBB">IBB</th>
     <th data-k="SO">K</th><th data-k="HBP">HBP</th><th data-k="SF">SF</th>
     <th data-k="AVG">AVG</th><th data-k="OBP">OBP</th><th data-k="SLG">SLG</th><th data-k="OPS">OPS</th>
+    <th data-k="BBpct">BB%</th><th data-k="Kpct">K%</th>
   </tr>`;
   bindSortBat();
 
@@ -532,6 +537,8 @@ function renderBat(){{
     <td class="${{cls(d.OBP,.36,.30)}}">${{fmt3(d.OBP)}}</td>
     <td class="${{cls(d.SLG,.45,.35)}}">${{fmt3(d.SLG)}}</td>
     <td class="${{cls(d.OPS,.9,.7)}}">${{fmt3(d.OPS)}}</td>
+    <td class="${{cls(d.BBpct,.12,.07)}}">${{fmtPct(d.BBpct)}}</td>
+    <td class="${{cls(d.Kpct,.30,.18,true)}}">${{fmtPct(d.Kpct)}}</td>
   </tr>`).join('');
 }}
 
@@ -588,7 +595,7 @@ function renderPit(){{
     <th data-k="BB">BB</th><th data-k="IBB">IBB</th><th data-k="SO">K</th>
     <th data-k="HBP">HBP</th><th data-k="SF">SF</th>
     <th data-k="BAA">BAA</th><th data-k="OBP">OBP</th><th data-k="SLG">SLG</th><th data-k="OPS">OPS</th>
-    <th data-k="Kpct">K%</th><th data-k="BBpct">BB%</th>
+    <th data-k="Kpct">K%</th><th data-k="BBpct">BB%</th><th data-k="WHIP">WHIP</th>
   </tr>`;
   bindSortPit();
 
@@ -607,6 +614,7 @@ function renderPit(){{
     <td class="${{cls(d.OPS,.9,.7,true)}}">${{fmt3(d.OPS)}}</td>
     <td class="${{cls(d.Kpct,.25,.18)}}">${{fmtPct(d.Kpct)}}</td>
     <td class="${{cls(d.BBpct,.1,.08,true)}}">${{fmtPct(d.BBpct)}}</td>
+    <td class="${{cls(d.WHIP,1.10,1.30,true)}}">${{d.WHIP.toFixed(2)}}</td>
   </tr>`).join('');
 }}
 
