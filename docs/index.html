@@ -84,7 +84,7 @@ td:nth-child(2){text-align:left;font-weight:500;color:var(--text);white-space:no
 <header>
   <div class="title-block">
     <h1>Leaderboard - MLB (2022 - present)</h1>
-    <div class="last-updated">Last updated in Jun 20 2026, 20:34</div>
+    <div class="last-updated">Last updated in Jun 20 2026, 21:51</div>
   </div>
   <nav>
     <button class="nav-btn active" data-page="overview"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Overview</button>
@@ -107,6 +107,7 @@ td:nth-child(2){text-align:left;font-weight:500;color:var(--text);white-space:no
     <div class="fg"><label>Player</label><input id="b-q" placeholder="Search..."/></div>
     <div class="fg"><label>Year</label><select id="b-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
     <div class="fg"><label>Game Type</label><select id="b-gt"><option value="">All</option><option value="R" selected>Regular Season</option><option value="playoffs">Playoffs</option></select></div>
+    <div class="fg"><label>Round</label><select id="b-rd"><option value="">All</option></select></div>
     <div class="fg"><label>Month</label><select id="b-ref"><option value="">All</option></select></div>
     <div class="fg"><label>Team</label><select id="b-tm"><option value="">All</option></select></div>
     <div class="fg"><label>Opponent</label><select id="b-ft"><option value="">All</option></select></div>
@@ -127,6 +128,7 @@ td:nth-child(2){text-align:left;font-weight:500;color:var(--text);white-space:no
     <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Search..."/></div>
     <div class="fg"><label>Year</label><select id="p-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
     <div class="fg"><label>Game Type</label><select id="p-gt"><option value="">All</option><option value="R" selected>Regular Season</option><option value="playoffs">Playoffs</option></select></div>
+    <div class="fg"><label>Round</label><select id="p-rd"><option value="">All</option></select></div>
     <div class="fg"><label>Month</label><select id="p-ref"><option value="">All</option></select></div>
     <div class="fg"><label>Team</label><select id="p-tm"><option value="">All</option></select></div>
     <div class="fg"><label>Opponent</label><select id="p-ft"><option value="">All</option></select></div>
@@ -216,6 +218,19 @@ function refreshDependentFilters(prefix, rawData, teamField, oppField){
   vnSel.innerHTML = '<option value="">All</option>' +
     venues.map(v=>`<option>${v}</option>`).join('');
   if(venues.includes(curVn)) vnSel.value = curVn;
+
+  // Round (series_description) is scoped by season AND the selected game
+  // type, since it only meaningfully varies within Playoffs.
+  const gtVal = document.getElementById(prefix+'-gt').value;
+  const gtScoped = gtVal
+    ? scoped.filter(r=> gtVal==='R' ? r.game_type==='R' : r.game_type!=='R')
+    : scoped;
+  const rdSel = document.getElementById(prefix+'-rd');
+  const curRd = rdSel.value;
+  const rounds = [...new Set(gtScoped.map(r=>r.series_description).filter(Boolean))].sort();
+  rdSel.innerHTML = '<option value="">All</option>' +
+    rounds.map(r=>`<option>${r}</option>`).join('');
+  if(rounds.includes(curRd)) rdSel.value = curRd;
 }
 
 function fmt3(v){ return v===0?'.000':v.toFixed(3).replace('0.','.'); }
@@ -313,6 +328,7 @@ function renderBat(){
   const season=document.getElementById('b-season').value;
   const ref=document.getElementById('b-ref').value;
   const gt=document.getElementById('b-gt').value;
+  const rd=document.getElementById('b-rd').value;
   const tm=document.getElementById('b-tm').value;
   const ft=document.getElementById('b-ft').value;
   const vn=document.getElementById('b-vn').value;
@@ -325,7 +341,7 @@ function renderBat(){
   let rows=BRAW.filter(r=>
     (!q||r.batter.toLowerCase().includes(q))&&
     (!season||season==='all'||String(r.season)===season)&&(!ref||String(r.ref)===ref)&&
-    (!gt||(gt==='R'?r.game_type==='R':r.game_type!=='R'))&&
+    (!gt||(gt==='R'?r.game_type==='R':r.game_type!=='R'))&&(!rd||r.series_description===rd)&&
     (!tm||r.batting_team===tm)&&(!ft||r.fielding_team===ft)&&(!vn||r.venue===vn)&&
     (!bs||r.bat_side===bs)&&(!sp||r.batter_split===sp)&&
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_batting===ha)
@@ -379,6 +395,7 @@ function renderPit(){
   const season=document.getElementById('p-season').value;
   const ref=document.getElementById('p-ref').value;
   const gt=document.getElementById('p-gt').value;
+  const rd=document.getElementById('p-rd').value;
   const tm=document.getElementById('p-tm').value;
   const ft=document.getElementById('p-ft').value;
   const vn=document.getElementById('p-vn').value;
@@ -391,7 +408,7 @@ function renderPit(){
   let rows=PRAW.filter(r=>
     (!q||r.pitcher.toLowerCase().includes(q))&&
     (!season||season==='all'||String(r.season)===season)&&(!ref||String(r.ref)===ref)&&
-    (!gt||(gt==='R'?r.game_type==='R':r.game_type!=='R'))&&
+    (!gt||(gt==='R'?r.game_type==='R':r.game_type!=='R'))&&(!rd||r.series_description===rd)&&
     (!tm||r.fielding_team===tm)&&(!ft||r.batting_team===ft)&&(!vn||r.venue===vn)&&
     (!ph||r.pitch_hand===ph)&&(!sp||r.pitcher_split===sp)&&
     (!mo||r.men_on_base===mo)&&(!ha||r.home_away_pitching===ha)
@@ -469,10 +486,10 @@ themeToggle.addEventListener('click', ()=>{
   applyTheme(cur==='light' ? 'dark' : 'light');
 });
 
-['b-q','b-ref','b-gt','b-tm','b-ft','b-vn','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
+['b-q','b-ref','b-gt','b-rd','b-tm','b-ft','b-vn','b-bs','b-sp','b-mo','b-ha','b-mpa'].forEach(id=>
   document.getElementById(id).addEventListener('input',renderBat)
 );
-['p-q','p-ref','p-gt','p-tm','p-ft','p-vn','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
+['p-q','p-ref','p-gt','p-rd','p-tm','p-ft','p-vn','p-ph','p-sp','p-mo','p-ha','p-mbf'].forEach(id=>
   document.getElementById(id).addEventListener('input',renderPit)
 );
 
