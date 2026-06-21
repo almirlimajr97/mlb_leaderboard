@@ -102,7 +102,7 @@ tbody tr:nth-child(even){background:rgba(128,128,128,.02)}
     <h1>LEADERBOARD·MLB</h1>
     <span style="color:var(--text2);font-family:var(--mono);font-size:11px">2022—PRESENT</span>
   </div>
-  <div class="last-updated"><span class="live-dot"></span>Jun 21 2026, 14:55</div>
+  <div class="last-updated"><span class="live-dot"></span>Jun 21 2026, 15:30</div>
   <nav>
     <button class="nav-btn active" data-page="overview">Overview</button>
     <button class="nav-btn" data-page="bat">Batters</button>
@@ -117,7 +117,7 @@ tbody tr:nth-child(even){background:rgba(128,128,128,.02)}
     <div class="fs-title">Filters · Batters</div>
     <div class="fg"><label>Player</label><input id="b-q" placeholder="Search..."/></div>
     <div class="fg-row">
-      <div class="fg"><label>Year</label><select id="b-season"><option value="all">All</option><option>2026</option></select></div>
+      <div class="fg"><label>Year</label><select id="b-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
       <div class="fg"><label>Min. PA</label><input id="b-mpa" type="number" value="10" min="1"/></div>
     </div>
     <div class="fg"><label>Game Type</label><select id="b-gt"><option value="">All</option><option value="R" selected>Regular Season</option><option value="playoffs">Playoffs</option></select></div>
@@ -140,7 +140,7 @@ tbody tr:nth-child(even){background:rgba(128,128,128,.02)}
     <div class="fs-title">Filters · Pitchers</div>
     <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Search..."/></div>
     <div class="fg-row">
-      <div class="fg"><label>Year</label><select id="p-season"><option value="all">All</option><option>2026</option></select></div>
+      <div class="fg"><label>Year</label><select id="p-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
       <div class="fg"><label>Min. BF</label><input id="p-mbf" type="number" value="10" min="1"/></div>
     </div>
     <div class="fg"><label>Game Type</label><select id="p-gt"><option value="">All</option><option value="R" selected>Regular Season</option><option value="playoffs">Playoffs</option></select></div>
@@ -183,7 +183,7 @@ tbody tr:nth-child(even){background:rgba(128,128,128,.02)}
 
 <script>
 let BRAW=[], PRAW=[];
-const SEASONS=[2026];
+const SEASONS=[2025, 2026];
 const MONTH_NAMES={"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"};
 let sortBatK='PA', sortBatAsc=false;
 let sortPitK='BF', sortPitAsc=false;
