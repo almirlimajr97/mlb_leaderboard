@@ -83,6 +83,14 @@ def load_raw() -> pd.DataFrame:
     # único logo na carga, antes de qualquer outra operação.
     df["season"] = pd.to_numeric(df["season"], errors="coerce").astype("Int64")
 
+    # Mesmo problema pode acontecer com "ref" (código YYYYMM, ex: "202509").
+    # Aqui mantemos como string (não numérico) porque ref é usado como
+    # código/label em vários pontos do pipeline e do front-end, não como
+    # valor matemático — mas precisa ser um tipo ÚNICO e consistente, ou o
+    # to_parquet() quebra ao tentar inferir um schema único para a coluna
+    # (foi exatamente esse erro: ArrowInvalid ao misturar int e str em ref).
+    df["ref"] = df["ref"].astype(str)
+
     return df
 
 
