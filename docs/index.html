@@ -4,144 +4,181 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Leaderboard - MLB (2022 - present)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.1.0/iconfont/tabler-icons.min.css">
 <style>
 :root{
-  --bg:#0a1628; --surface:#0f2138; --surface2:#142a45; --border:rgba(255,255,255,.08);
-  --border2:rgba(255,255,255,.14); --text:#e8eaf0; --text2:#8892a4; --text3:#5a6478;
-  --accent:#f5c518; --accent-dim:rgba(245,197,24,.12);
-  --hi:#16a34a; --md:#ca8a04; --lo:#dc2626;
-  --row-hover:rgba(245,197,24,.06);
+  --bg:#0A0E14; --surface:#0F1520; --surface2:#131B28;
+  --border:#1C2533; --border2:#26313F;
+  --text:#E8EAED; --text2:#7A8699; --text3:#4A5568;
+  --accent:#FF6B35; --accent-dim:#7A3D24;
+  --hi:#3DDC97; --hi-dim:#1E5C44; --md:#E0A847; --lo:#7A8699;
+  --row-hover:#131B28;
+  --mono:'JetBrains Mono',monospace; --sans:'Inter',sans-serif;
 }
 [data-theme="light"]{
-  --bg:#f7f8fa; --surface:#ffffff; --surface2:#f1f3f6; --border:rgba(10,22,40,.10);
-  --border2:rgba(10,22,40,.16); --text:#0f1a2b; --text2:#5a6478; --text3:#8892a4;
-  --accent:#b8860b; --accent-dim:rgba(184,134,11,.10);
-  --hi:#16a34a; --md:#b45309; --lo:#dc2626;
-  --row-hover:rgba(184,134,11,.06);
+  --bg:#F5F4F1; --surface:#FFFFFF; --surface2:#FBFAF8;
+  --border:#E2E0DA; --border2:#D2CFC6;
+  --text:#1A1D23; --text2:#6B7280; --text3:#9CA3AF;
+  --accent:#D8500F; --accent-dim:#FBE2D3;
+  --hi:#0F9D63; --hi-dim:#D7F2E5; --md:#B45309; --lo:#9CA3AF;
+  --row-hover:#FBFAF8;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .15s,color .15s}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:13px;-webkit-font-smoothing:antialiased;transition:background .15s,color .15s}
 
-header{padding:1.1rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);z-index:20}
-.title-block{display:flex;flex-direction:column;gap:2px;text-align:left}
-header h1{font-size:1.15rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:8px;white-space:nowrap}
-.last-updated{font-size:11px;color:var(--text3)}
-nav{display:flex;gap:4px;margin-left:auto}
-.nav-btn{padding:7px 16px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px}
-.nav-btn:hover{color:var(--text);background:rgba(128,128,128,.08)}
-.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
-.theme-toggle{width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+header{height:52px;padding:0 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.25rem;flex-wrap:nowrap;position:sticky;top:0;background:var(--surface);z-index:20}
+.title-block{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+header h1{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--text)}
+.last-updated{font-family:var(--mono);font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--hi);box-shadow:0 0 0 3px var(--hi-dim);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+nav{display:flex;gap:2px;margin-left:auto}
+.nav-btn{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:6px 14px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text2);cursor:pointer;transition:.15s;display:flex;align-items:center;gap:6px}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent);border-color:var(--accent-dim)}
+.theme-toggle{width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-left:12px}
 .theme-toggle:hover{color:var(--accent);border-color:var(--accent)}
 
-.page{display:none;padding:1.5rem 2rem 3rem}
-.page.active{display:block}
-
-.section-title{font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin:2rem 0 .9rem}
-.section-title:first-child{margin-top:0}
-
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden}
-.kpi-card .kpi-icon{position:absolute;right:14px;top:14px;font-size:22px;color:var(--border2)}
-.kpi-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:10px}
-.kpi-row{display:flex;align-items:baseline;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border)}
-.kpi-row:last-child{border-bottom:none}
-.kpi-name{font-size:13.5px;color:var(--text);font-weight:500}
-.kpi-value{font-size:14px;color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
-.kpi-rank{font-size:11px;color:var(--text3);width:16px;display:inline-block}
-
-.filters{display:flex;gap:10px;padding:.8rem 0 1.1rem;flex-wrap:wrap;align-items:flex-end;border-bottom:1px solid var(--border);margin-bottom:1rem}
-.fg{display:flex;flex-direction:column;gap:3px}
-.fg label{font-size:10.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}
-input,select{background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px;outline:none}
+.app{display:flex;min-height:calc(100vh - 52px)}
+.filters-sidebar{width:200px;background:var(--surface);border-right:1px solid var(--border);flex-shrink:0;padding:16px 14px;display:none}
+.filters-sidebar.active{display:block}
+.fs-title{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.fg label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:var(--text3)}
+.fg-row{display:flex;gap:8px}
+.fg-row .fg{flex:1;margin-bottom:0}
+input,select{width:100%;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:11px;padding:6px 8px;border-radius:4px;outline:none}
+input:hover,select:hover{border-color:var(--text3)}
 input:focus,select:focus{border-color:var(--accent)}
 select option{background:var(--surface)}
 input::placeholder{color:var(--text3)}
 
-.info-bar{font-size:12px;color:var(--text2);padding-bottom:.7rem}
-.info-bar b{color:var(--accent)}
+.main{flex:1;min-width:0}
+.page{display:none;padding:18px 22px}
+.page.active{display:block}
 
-.wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:820px}
-thead tr{background:var(--surface)}
-th{padding:9px 12px;text-align:right;font-weight:600;color:var(--text2);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;cursor:pointer;user-select:none;background:var(--surface)}
-th:first-child,th:nth-child(2){text-align:left}
-th:hover{color:var(--accent)}
+.section-title{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.section-title:first-child{margin-top:0}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-title .yr{color:var(--accent)}
+.section-title .min{color:var(--text2)}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:8px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 14px}
+.kpi-card .hd{display:flex;align-items:center;gap:6px;margin-bottom:10px;color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-family:var(--mono)}
+.kpi-card .hd i{font-size:14px;color:var(--accent)}
+.kpi-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px}
+.kpi-row .rank{color:var(--text3);font-family:var(--mono);width:16px;font-size:11px}
+.kpi-row .name{flex:1;color:var(--text);font-family:var(--mono)}
+.kpi-row .val{font-family:var(--mono);font-weight:600;color:var(--text)}
+.kpi-row:first-child .val{color:var(--accent)}
+
+.info-bar{font-family:var(--mono);font-size:11px;color:var(--text2);margin-bottom:10px}
+.info-bar b{color:var(--text)}
+
+.wrap{overflow-x:auto;border:1px solid var(--border);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);min-width:820px}
+thead th{position:sticky;top:0;background:var(--surface);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);text-align:right;padding:8px 10px;border-bottom:1px solid var(--border2);cursor:pointer;user-select:none;white-space:nowrap}
+thead th:first-child,thead th:nth-child(2){text-align:left}
+thead th:hover{color:var(--text2)}
 th.asc::after{content:' ↑';color:var(--accent)}
 th.desc::after{content:' ↓';color:var(--accent)}
-tbody tr{border-top:1px solid var(--border)}
+tbody td{text-align:right;padding:6px 10px;font-size:12px;border-bottom:1px solid var(--border);white-space:nowrap;font-variant-numeric:tabular-nums}
+tbody td:first-child{text-align:right;color:var(--text3);font-size:11px}
+tbody td:nth-child(2){text-align:left;color:var(--text);font-weight:500}
 tbody tr:hover{background:var(--row-hover)}
-td{padding:8px 12px;text-align:right;color:var(--text);font-variant-numeric:tabular-nums}
-td:first-child{text-align:left;color:var(--text3);font-size:11px}
-td:nth-child(2){text-align:left;font-weight:500;color:var(--text);white-space:nowrap}
+tbody tr:nth-child(even){background:rgba(128,128,128,.02)}
 .hi{color:var(--hi);font-weight:600}
 .md{color:var(--md);font-weight:500}
-.lo{color:var(--lo)}
-.empty{text-align:center;color:var(--text3);padding:3rem;font-size:14px}
+.lo{color:var(--text2)}
+.empty{text-align:center;color:var(--text3);padding:3rem;font-size:14px;font-family:var(--mono)}
 </style>
 </head>
 <body>
 <header>
   <div class="title-block">
-    <h1>Leaderboard - MLB (2022 - present)</h1>
-    <div class="last-updated">Last updated in Jun 20 2026, 23:18</div>
+    <h1>LEADERBOARD·MLB</h1>
+    <span style="color:var(--text2);font-family:var(--mono);font-size:11px">2022—PRESENT</span>
   </div>
+  <div class="last-updated"><span class="live-dot"></span>Jun 21 2026, 00:07</div>
   <nav>
-    <button class="nav-btn active" data-page="overview"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Overview</button>
-    <button class="nav-btn" data-page="bat"><i class="ti ti-baseball-bat" aria-hidden="true"></i>Batters</button>
-    <button class="nav-btn" data-page="pit"><i class="ti ti-circle-dot" aria-hidden="true"></i>Pitchers</button>
+    <button class="nav-btn active" data-page="overview">Overview</button>
+    <button class="nav-btn" data-page="bat">Batters</button>
+    <button class="nav-btn" data-page="pit">Pitchers</button>
   </nav>
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme"><i class="ti ti-moon" aria-hidden="true" id="theme-icon"></i></button>
 </header>
-<div id="loading-bar" style="font-size:12px;color:var(--text2);padding:.5rem 2rem;border-bottom:1px solid var(--border)">Loading data...</div>
+<div id="loading-bar" style="font-family:var(--mono);font-size:11px;color:var(--text2);padding:.5rem 1.5rem;border-bottom:1px solid var(--border)">Loading data...</div>
 
-<div class="page active" id="page-overview">
-  <div class="section-title">Batting Leaders</div>
-  <div class="kpi-grid" id="kpi-bat"></div>
-  <div class="section-title">Pitching Leaders</div>
-  <div class="kpi-grid" id="kpi-pit"></div>
-</div>
-
-<div class="page" id="page-bat">
-  <div class="filters">
+<div class="app">
+  <div class="filters-sidebar" id="filters-bat">
+    <div class="fs-title">Filters · Batters</div>
     <div class="fg"><label>Player</label><input id="b-q" placeholder="Search..."/></div>
-    <div class="fg"><label>Year</label><select id="b-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
+    <div class="fg-row">
+      <div class="fg"><label>Year</label><select id="b-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
+      <div class="fg"><label>Min. PA</label><input id="b-mpa" type="number" value="10" min="1"/></div>
+    </div>
     <div class="fg"><label>Game Type</label><select id="b-gt"><option value="">All</option><option value="R" selected>Regular Season</option><option value="playoffs">Playoffs</option></select></div>
     <div class="fg"><label>Round</label><select id="b-rd"><option value="">All</option></select></div>
     <div class="fg"><label>Month</label><select id="b-ref"><option value="">All</option></select></div>
     <div class="fg"><label>Team</label><select id="b-tm"><option value="">All</option></select></div>
     <div class="fg"><label>Opponent</label><select id="b-ft"><option value="">All</option></select></div>
     <div class="fg"><label>Venue</label><select id="b-vn"><option value="">All</option></select></div>
-    <div class="fg"><label>Bat Side</label><select id="b-bs"><option value="">Both</option><option value="R">Right (R)</option><option value="L">Left (L)</option></select></div>
-    <div class="fg"><label>Split</label><select id="b-sp"><option value="">All</option><option value="vs_RHP">vs RHP</option><option value="vs_LHP">vs LHP</option></select></div>
-    <div class="fg"><label>Situation</label><select id="b-mo"><option value="">All</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
-    <div class="fg"><label>Home/Away</label><select id="b-ha"><option value="">All</option><option value="home">Home</option><option value="away">Away</option></select></div>
-    <div class="fg"><label>Min. PA</label><input id="b-mpa" type="number" value="10" min="1" style="width:65px"/></div>
+    <div class="fg-row">
+      <div class="fg"><label>Bat Side</label><select id="b-bs"><option value="">Both</option><option value="R">Right (R)</option><option value="L">Left (L)</option></select></div>
+      <div class="fg"><label>Split</label><select id="b-sp"><option value="">All</option><option value="vs_RHP">vs RHP</option><option value="vs_LHP">vs LHP</option></select></div>
+    </div>
+    <div class="fg-row">
+      <div class="fg"><label>Situation</label><select id="b-mo"><option value="">All</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
+      <div class="fg"><label>Home/Away</label><select id="b-ha"><option value="">All</option><option value="home">Home</option><option value="away">Away</option></select></div>
+    </div>
   </div>
-  <div class="info-bar" id="b-info"></div>
-  <div class="wrap"><table><thead id="b-thead"></thead><tbody id="b-tb"></tbody></table></div>
-  <div class="empty" id="b-emp" style="display:none">No results found.</div>
-</div>
 
-<div class="page" id="page-pit">
-  <div class="filters">
+  <div class="filters-sidebar" id="filters-pit">
+    <div class="fs-title">Filters · Pitchers</div>
     <div class="fg"><label>Pitcher</label><input id="p-q" placeholder="Search..."/></div>
-    <div class="fg"><label>Year</label><select id="p-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
+    <div class="fg-row">
+      <div class="fg"><label>Year</label><select id="p-season"><option value="all">All</option><option>2025</option><option>2026</option></select></div>
+      <div class="fg"><label>Min. BF</label><input id="p-mbf" type="number" value="10" min="1"/></div>
+    </div>
     <div class="fg"><label>Game Type</label><select id="p-gt"><option value="">All</option><option value="R" selected>Regular Season</option><option value="playoffs">Playoffs</option></select></div>
     <div class="fg"><label>Round</label><select id="p-rd"><option value="">All</option></select></div>
     <div class="fg"><label>Month</label><select id="p-ref"><option value="">All</option></select></div>
     <div class="fg"><label>Team</label><select id="p-tm"><option value="">All</option></select></div>
     <div class="fg"><label>Opponent</label><select id="p-ft"><option value="">All</option></select></div>
     <div class="fg"><label>Venue</label><select id="p-vn"><option value="">All</option></select></div>
-    <div class="fg"><label>Hand</label><select id="p-ph"><option value="">Both</option><option value="R">Right (R)</option><option value="L">Left (L)</option></select></div>
-    <div class="fg"><label>Split</label><select id="p-sp"><option value="">All</option><option value="vs_RHB">vs RHB</option><option value="vs_LHB">vs LHB</option></select></div>
-    <div class="fg"><label>Situation</label><select id="p-mo"><option value="">All</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
-    <div class="fg"><label>Home/Away</label><select id="p-ha"><option value="">All</option><option value="home">Home</option><option value="away">Away</option></select></div>
-    <div class="fg"><label>Min. BF</label><input id="p-mbf" type="number" value="10" min="1" style="width:65px"/></div>
+    <div class="fg-row">
+      <div class="fg"><label>Hand</label><select id="p-ph"><option value="">Both</option><option value="R">Right (R)</option><option value="L">Left (L)</option></select></div>
+      <div class="fg"><label>Split</label><select id="p-sp"><option value="">All</option><option value="vs_RHB">vs RHB</option><option value="vs_LHB">vs LHB</option></select></div>
+    </div>
+    <div class="fg-row">
+      <div class="fg"><label>Situation</label><select id="p-mo"><option value="">All</option><option value="Empty">Empty</option><option value="Men_On">Men On</option><option value="RISP">RISP</option><option value="Loaded">Loaded</option></select></div>
+      <div class="fg"><label>Home/Away</label><select id="p-ha"><option value="">All</option><option value="home">Home</option><option value="away">Away</option></select></div>
+    </div>
   </div>
-  <div class="info-bar" id="p-info"></div>
-  <div class="wrap"><table><thead id="p-thead"></thead><tbody id="p-tb"></tbody></table></div>
-  <div class="empty" id="p-emp" style="display:none">No results found.</div>
+
+  <div class="main">
+    <div class="page active" id="page-overview">
+      <div class="section-title">Batting leaders<span class="yr">· 2026</span><span class="min">· min. 100 PA</span></div>
+      <div class="kpi-grid" id="kpi-bat"></div>
+      <div class="section-title">Pitching leaders<span class="yr">· 2026</span><span class="min">· min. 100 BF</span></div>
+      <div class="kpi-grid" id="kpi-pit"></div>
+    </div>
+
+    <div class="page" id="page-bat">
+      <div class="info-bar" id="b-info"></div>
+      <div class="wrap"><table><thead id="b-thead"></thead><tbody id="b-tb"></tbody></table></div>
+      <div class="empty" id="b-emp" style="display:none">No results found.</div>
+    </div>
+
+    <div class="page" id="page-pit">
+      <div class="info-bar" id="p-info"></div>
+      <div class="wrap"><table><thead id="p-thead"></thead><tbody id="p-tb"></tbody></table></div>
+      <div class="empty" id="p-emp" style="display:none">No results found.</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -468,8 +505,11 @@ document.querySelectorAll('.nav-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.filters-sidebar').forEach(f=>f.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('page-'+btn.dataset.page).classList.add('active');
+    const fs = document.getElementById('filters-'+btn.dataset.page);
+    if(fs) fs.classList.add('active');
   });
 });
 
