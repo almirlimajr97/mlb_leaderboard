@@ -419,7 +419,7 @@ function aggBat(rows){{
     const kpct=a.PA>0?a.SO/a.PA:0;
     const babipDenom=a.AB-a.SO-a.HR+a.SF;
     const babip=babipDenom>0?(a.H-a.HR)/babipDenom:0;
-    return {{...a,G:a.games.size,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),BBpct:+bbpct.toFixed(3),Kpct:+kpct.toFixed(3),BABIP:+babip.toFixed(3)}};
+    return {{...a,G:a.games.size,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),BBpct:+bbpct.toFixed(3),Kpct:+kpct.toFixed(3),BABIP:+babip.toFixed(3),BBtotal:a.BB+a.IBB}};
   }});
 }}
 
@@ -443,7 +443,7 @@ function aggPit(rows){{
     const bbpct=a.BF>0?(a.BB+a.IBB)/a.BF:0;
     const ip=a.outs/3;
     const whip=ip>0?(a.BB+a.IBB+a.H)/ip:0;
-    return {{...a,G:a.games.size,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3),WHIP:+whip.toFixed(2)}};
+    return {{...a,G:a.games.size,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3),WHIP:+whip.toFixed(2),BBtotal:a.BB+a.IBB}};
   }});
 }}
 
@@ -519,7 +519,7 @@ function renderBat(){{
     <th data-k="rank">#</th><th data-k="batter">Player</th>
     <th data-k="PA">PA</th><th data-k="AB">AB</th><th data-k="H">H</th>
     <th data-k="doubles">2B</th><th data-k="triples">3B</th><th data-k="HR">HR</th>
-    <th data-k="RBI">RBI</th><th data-k="BB">BB</th><th data-k="IBB">IBB</th>
+    <th data-k="RBI">RBI</th><th data-k="BBtotal">BB</th><th data-k="IBB">IBB</th>
     <th data-k="SO">K</th><th data-k="HBP">HBP</th><th data-k="SF">SF</th>
     <th data-k="AVG">AVG</th><th data-k="OBP">OBP</th><th data-k="SLG">SLG</th>
     <th data-k="OPS">OPS</th><th data-k="BABIP">BABIP</th><th data-k="BBpct">BB%</th><th data-k="Kpct">K%</th>
@@ -533,7 +533,7 @@ function renderBat(){{
     <td>${{i+1}}</td><td>${{d.batter}}</td>
     <td>${{d.PA}}</td><td>${{d.AB}}</td><td>${{d.H}}</td>
     <td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
-    <td>${{d.RBI}}</td><td>${{d.BB+d.IBB}}</td><td>${{d.IBB}}</td>
+    <td>${{d.RBI}}</td><td>${{d.BBtotal}}</td><td>${{d.IBB}}</td>
     <td>${{d.SO}}</td><td>${{d.HBP}}</td><td>${{d.SF}}</td>
     <td class="${{cls(d.AVG,.3,.22)}}">${{fmt3(d.AVG)}}</td>
     <td class="${{cls(d.OBP,.36,.30)}}">${{fmt3(d.OBP)}}</td>
@@ -595,7 +595,7 @@ function renderPit(){{
     <th data-k="rank">#</th><th data-k="pitcher">Pitcher</th>
     <th data-k="G">G</th><th data-k="IP">IP</th><th data-k="BF">BF</th><th data-k="AB">AB</th>
     <th data-k="H">H</th><th data-k="doubles">2B</th><th data-k="triples">3B</th><th data-k="HR">HR</th>
-    <th data-k="BB">BB</th><th data-k="IBB">IBB</th><th data-k="SO">K</th>
+    <th data-k="BBtotal">BB</th><th data-k="IBB">IBB</th><th data-k="SO">K</th>
     <th data-k="HBP">HBP</th><th data-k="SF">SF</th>
     <th data-k="BAA">BAA</th><th data-k="OBP">OBP</th><th data-k="SLG">SLG</th>
     <th data-k="OPS">OPS</th><th data-k="WHIP">WHIP</th><th data-k="BBpct">BB%</th><th data-k="Kpct">K%</th>
@@ -609,7 +609,7 @@ function renderPit(){{
     <td>${{i+1}}</td><td>${{d.pitcher}}</td>
     <td>${{d.G}}</td><td>${{d.IP}}</td><td>${{d.BF}}</td><td>${{d.AB}}</td>
     <td>${{d.H}}</td><td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
-    <td>${{d.BB+d.IBB}}</td><td>${{d.IBB}}</td><td>${{d.SO}}</td>
+    <td>${{d.BBtotal}}</td><td>${{d.IBB}}</td><td>${{d.SO}}</td>
     <td>${{d.HBP}}</td><td>${{d.SF}}</td>
     <td class="${{cls(d.BAA,.22,.30,true)}}">${{fmt3(d.BAA)}}</td>
     <td class="${{cls(d.OBP,.30,.36,true)}}">${{fmt3(d.OBP)}}</td>
