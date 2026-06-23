@@ -2,7 +2,7 @@
 
 A batting and pitching stats dashboard for MLB, automatically updated via GitHub Actions from the [MLB Stats API](https://statsapi.mlb.com).
 
-**🔗 [View the live dashboard](https://almirlimajr97.github.io/mlb_leaderboard/)**
+**🔗 [View the live dashboard](https://almirlimajr97.github.io/mlb_statleaders/)**
 
 ## What it is
 
@@ -20,7 +20,7 @@ A terminal-style leaderboard (dark mode, dense, data-driven) with batting and pi
 ## Architecture
 
 ```
-mlb_leaderboard/
+mlb_statleaders/
 ├── .github/workflows/
 │   └── update.yml          # Schedules the daily collection + allows manual reprocessing
 ├── scripts/

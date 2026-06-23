@@ -299,7 +299,7 @@ tbody tr:nth-child(even){{background:rgba(128,128,128,.02)}}
 <footer>
   <span class="footer-text">Built by Almir Lima Jr. · Data: MLB Stats API</span>
   <div class="footer-links">
-    <a href="https://github.com/almirlimajr97/mlb_leaderboard" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/almirlimajr97/mlb_statleaders" target="_blank" rel="noopener">GitHub</a>
     <a href="mailto:almirlimajr97@icloud.com">Email</a>
   </div>
 </footer>
