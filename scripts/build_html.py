@@ -405,9 +405,10 @@ function aggBat(rows){{
   const m={{}};
   for(const r of rows){{
     const k=r.batter_id;
-    if(!m[k]) m[k]={{batter:r.batter,games:new Set(),PA:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,RBI:0,BB:0,IBB:0,SO:0,HBP:0,SF:0}};
+    if(!m[k]) m[k]={{batter:r.batter,games:new Set(),teams:new Set(),PA:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,RBI:0,BB:0,IBB:0,SO:0,HBP:0,SF:0}};
     const a=m[k];
     a.games.add(r.game_pk);
+    if(r.batting_team) a.teams.add(r.batting_team);
     a.PA+=r.PA;a.AB+=r.AB;a.H+=r.H;a.singles+=r.singles;
     a.doubles+=r.doubles;a.triples+=r.triples;a.HR+=r.HR;
     a.RBI+=r.RBI;a.BB+=r.BB;a.IBB+=r.IBB;a.SO+=r.SO;a.HBP+=r.HBP;a.SF+=r.SF;
@@ -420,7 +421,7 @@ function aggBat(rows){{
     const kpct=a.PA>0?a.SO/a.PA:0;
     const babipDenom=a.AB-a.SO-a.HR+a.SF;
     const babip=babipDenom>0?(a.H-a.HR)/babipDenom:0;
-    return {{...a,G:a.games.size,AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),BBpct:+bbpct.toFixed(3),Kpct:+kpct.toFixed(3),BABIP:+babip.toFixed(3),BBtotal:a.BB+a.IBB}};
+    return {{...a,G:a.games.size,teams:[...a.teams].join(' / '),AVG:+avg.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),BBpct:+bbpct.toFixed(3),Kpct:+kpct.toFixed(3),BABIP:+babip.toFixed(3),BBtotal:a.BB+a.IBB}};
   }});
 }}
 
@@ -428,9 +429,10 @@ function aggPit(rows){{
   const m={{}};
   for(const r of rows){{
     const k=r.pitcher_id;
-    if(!m[k]) m[k]={{pitcher:r.pitcher,games:new Set(),BF:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,BB:0,IBB:0,SO:0,HBP:0,SF:0,outs:0}};
+    if(!m[k]) m[k]={{pitcher:r.pitcher,games:new Set(),teams:new Set(),BF:0,AB:0,H:0,singles:0,doubles:0,triples:0,HR:0,BB:0,IBB:0,SO:0,HBP:0,SF:0,outs:0}};
     const a=m[k];
     a.games.add(r.game_pk);
+    if(r.fielding_team) a.teams.add(r.fielding_team);
     a.BF+=r.BF;a.AB+=r.AB;a.H+=r.H;a.singles+=r.singles;
     a.doubles+=r.doubles;a.triples+=r.triples;a.HR+=r.HR;
     a.BB+=r.BB;a.IBB+=r.IBB;a.SO+=r.SO;a.HBP+=r.HBP;a.SF+=r.SF;
@@ -444,7 +446,7 @@ function aggPit(rows){{
     const bbpct=a.BF>0?(a.BB+a.IBB)/a.BF:0;
     const ip=a.outs/3;
     const whip=ip>0?(a.BB+a.IBB+a.H)/ip:0;
-    return {{...a,G:a.games.size,IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3),WHIP:+whip.toFixed(2),BBtotal:a.BB+a.IBB}};
+    return {{...a,G:a.games.size,teams:[...a.teams].join(' / '),IP:fmtIP(a.outs),BAA:+baa.toFixed(3),OBP:+obp.toFixed(3),SLG:+slg.toFixed(3),OPS:+(obp+slg).toFixed(3),Kpct:+kpct.toFixed(3),BBpct:+bbpct.toFixed(3),WHIP:+whip.toFixed(2),BBtotal:a.BB+a.IBB}};
   }});
 }}
 
@@ -531,7 +533,7 @@ function renderBat(){{
   if(!data.length){{document.getElementById('b-tb').innerHTML='';emp.style.display='block';return;}}
   emp.style.display='none';
   document.getElementById('b-tb').innerHTML=data.map((d,i)=>`<tr>
-    <td>${{i+1}}</td><td>${{d.batter}}</td>
+    <td>${{i+1}}</td><td><span style="display:block">${{d.batter}}</span><span style="display:block;font-size:10px;color:var(--text2);font-weight:400">${{d.teams}}</span></td>
     <td>${{d.PA}}</td><td>${{d.AB}}</td><td>${{d.H}}</td>
     <td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
     <td>${{d.RBI}}</td><td>${{d.BBtotal}}</td><td>${{d.IBB}}</td>
@@ -607,7 +609,7 @@ function renderPit(){{
   if(!data.length){{document.getElementById('p-tb').innerHTML='';emp.style.display='block';return;}}
   emp.style.display='none';
   document.getElementById('p-tb').innerHTML=data.map((d,i)=>`<tr>
-    <td>${{i+1}}</td><td>${{d.pitcher}}</td>
+    <td>${{i+1}}</td><td><span style="display:block">${{d.pitcher}}</span><span style="display:block;font-size:10px;color:var(--text2);font-weight:400">${{d.teams}}</span></td>
     <td>${{d.G}}</td><td>${{d.IP}}</td><td>${{d.BF}}</td><td>${{d.AB}}</td>
     <td>${{d.H}}</td><td>${{d.doubles}}</td><td>${{d.triples}}</td><td>${{d.HR}}</td>
     <td>${{d.BBtotal}}</td><td>${{d.IBB}}</td><td>${{d.SO}}</td>
