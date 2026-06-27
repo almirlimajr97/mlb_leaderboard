@@ -10,8 +10,10 @@ A terminal-style leaderboard (dark mode, dense, data-driven) with batting and pi
 
 ### Features
 
-- **Overview** with KPI cards for the current season's leaders (batting: OPS, Hits, Home Runs, RBI; pitching: Innings, OPS against, K%, WHIP)
-- **Full tables** for Batters and Pitchers, with traditional columns (AVG, OBP, SLG, OPS, BAA) and advanced ones (BB%, K%, WHIP)
+- **Overview** with KPI cards for the current season's leaders (batting: OPS, Hits, Home Runs, RBI; pitching: Innings, WHIP, OPS against, K%) — scoped to Regular Season only
+- **Full tables** for Batters and Pitchers, with traditional columns (AVG, OBP, SLG, OPS, BAA) and advanced ones (BABIP, BB%, K%, WHIP)
+- **Team display** below each player's name — players who appeared for more than one team within the active filter context will have all represented teams listed
+- **Color-coded stats**: green (elite) → gray (average) → red (poor), with thresholds calibrated per stat and direction (higher is better for batters, lower for pitchers)
 - **Granular filters**: season, game type (regular season/playoffs), playoff round, month, team, opponent, venue, batting/pitching side, runners-on situation, home/away
 - **Interactive sorting** on any table column
 - **Light/dark theme** toggle
