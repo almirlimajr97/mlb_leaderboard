@@ -77,6 +77,11 @@ def get_scores(game_date: str) -> list:
 
 # ── Stats do dia ──────────────────────────────────────────────────────────────
 
+NOT_AB      = ["Walk", "Intent Walk", "Hit By Pitch", "Sac Fly", "Sac Bunt", "Catcher Interference"]
+HITS        = ["Single", "Double", "Triple", "Home Run"]
+EXCLUDE_PA  = "Pickoff|Caught Stealing|Runner Out|Balk|Wild Pitch|Stolen Base"
+
+
 def load_day_stats(game_date: str):
     path = RAW_DIR / f"{game_date}.parquet"
     if not path.exists():
@@ -87,38 +92,57 @@ def load_day_stats(game_date: str):
     if df.empty:
         return pd.DataFrame(), pd.DataFrame()
 
-    # Batters
+    # ── Batters ──────────────────────────────────────────────
     bat = df[df["record_type"] == "pitch"].copy()
+    bat_agg = pd.DataFrame()
     if not bat.empty:
+        event         = bat["event"].fillna("")
+        is_excluded   = event.str.contains(EXCLUDE_PA, na=False)
+        bat["is_pa"]  = event.ne("") & ~is_excluded
+        bat["is_ab"]  = event.ne("") & ~event.isin(NOT_AB) & ~is_excluded
+        bat["is_hit"] = event.isin(HITS)
+        bat["is_hr"]  = event == "Home Run"
+        bat["is_bb"]  = event == "Walk"
+        bat["is_ibb"] = event == "Intent Walk"
+        bat["is_so"]  = event == "Strikeout"
+
         bat_agg = bat.groupby(["batter", "batter_id", "batting_team"]).agg(
-            PA=("PA",  "sum"), AB=("AB", "sum"), H=("H",  "sum"),
-            HR=("HR", "sum"), RBI=("RBI", "sum"), BB=("BB", "sum"), SO=("SO", "sum"),
+            PA=("is_pa",  "sum"), AB=("is_ab",  "sum"), H=("is_hit", "sum"),
+            HR=("is_hr",  "sum"), BB=("is_bb",  "sum"), IBB=("is_ibb", "sum"),
+            SO=("is_so",  "sum"), RBI=("rbi",   "sum"),
         ).reset_index()
-    else:
-        bat_agg = pd.DataFrame()
 
-    # Pitchers
+    # ── Pitchers ─────────────────────────────────────────────
     pit = df[df["record_type"] == "pitch"].copy()
+    pit_agg = pd.DataFrame()
     if not pit.empty:
-        br = df[df["record_type"] == "baserunning"].copy()
+        event         = pit["event"].fillna("")
+        is_excluded   = event.str.contains(EXCLUDE_PA, na=False)
+        pit["is_bf"]  = event.ne("") & ~is_excluded
+        pit["is_hit"] = event.isin(HITS)
+        pit["is_hr"]  = event == "Home Run"
+        pit["is_bb"]  = event == "Walk"
+        pit["is_ibb"] = event == "Intent Walk"
+        pit["is_so"]  = event == "Strikeout"
+        pit["is_hbp"] = event == "Hit By Pitch"
+
         pit_agg = pit.groupby(["pitcher", "pitcher_id", "fielding_team"]).agg(
-            BF=("BF", "sum"), H=("H", "sum"), HR=("HR", "sum"),
-            BB=("BB", "sum"), IBB=("IBB", "sum"), SO=("SO", "sum"),
-            HBP=("HBP", "sum"), outs=("total_outs", "sum"),
+            BF=("is_bf",  "sum"), H=("is_hit", "sum"), HR=("is_hr",  "sum"),
+            BB=("is_bb",  "sum"), IBB=("is_ibb", "sum"), SO=("is_so", "sum"),
+            HBP=("is_hbp", "sum"), outs=("total_outs", "sum"),
         ).reset_index()
 
+        # outs de baserunning
+        br = df[df["record_type"] == "baserunning"].copy()
         if not br.empty:
             br_total = br.groupby("pitcher_id")["total_outs"].sum().reset_index()
             br_total.columns = ["pitcher_id", "br_outs"]
             pit_agg = pit_agg.merge(br_total, on="pitcher_id", how="left")
-            pit_agg["br_outs"] = pit_agg["br_outs"].fillna(0)
-            pit_agg["outs"]    = pit_agg["outs"] + pit_agg["br_outs"]
+            pit_agg["outs"] = pit_agg["outs"] + pit_agg["br_outs"].fillna(0)
 
         pit_agg["ip_outs"] = pit_agg["outs"].astype(int)
         pit_agg["ip_val"]  = pit_agg["ip_outs"] / 3
         pit_agg["IP"]      = pit_agg["ip_outs"].apply(lambda o: f"{o//3}.{o%3}")
-    else:
-        pit_agg = pd.DataFrame()
 
     return bat_agg, pit_agg
 
