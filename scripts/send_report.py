@@ -165,6 +165,13 @@ def detect_highlights(bat_agg: pd.DataFrame, pit_agg: pd.DataFrame) -> list:
                         "detail": f"{row['pitcher']} ({row['fielding_team']}) — {row['IP']} IP, 0 H, 0 ER, {int(row['SO'])} K",
                         "pitcher": row["pitcher"], "team": row["fielding_team"],
                     })
+            elif row["ip_val"] >= 9:
+                highlights.append({
+                    "type": "complete_game", "label": "Complete game",
+                    "badge": "CG", "color": "pitching",
+                    "detail": f"{row['pitcher']} ({row['fielding_team']}) — {row['IP']} IP, {int(row['H'])} H, {int(row['SO'])} K",
+                    "pitcher": row["pitcher"], "team": row["fielding_team"],
+                })
             if row["SO"] >= 10:
                 highlights.append({
                     "type": "pit_explosion", "label": "Pitching explosion",
@@ -218,7 +225,7 @@ def offense_badge(batter: str, highlights: list) -> str:
 
 def pitcher_badge(pitcher: str, highlights: list) -> str:
     for h in highlights:
-        if h["type"] in ("no_hitter", "perfect_game", "pit_explosion") and h.get("pitcher") == pitcher:
+        if h["type"] in ("no_hitter", "perfect_game", "complete_game", "pit_explosion") and h.get("pitcher") == pitcher:
             bs = S["badge_pg"] if h["type"] == "perfect_game" else S["badge_nh"]
             return f'<span style="{bs}">{h["badge"]}</span>'
     return ""
@@ -342,7 +349,7 @@ def render_highlights_html(highlights: list) -> str:
     for h in highlights:
         if h["type"] == "perfect_game":
             bs = S["badge_pg"]
-        elif h["type"] in ("no_hitter", "pit_explosion"):
+        elif h["type"] in ("no_hitter", "complete_game", "pit_explosion"):
             bs = S["badge_nh"]
         else:
             bs = S["badge_off"]
@@ -361,7 +368,7 @@ def render_highlights_html(highlights: list) -> str:
 def render_scores_html(scores: list, highlights: list) -> str:
     if not scores:
         return ""
-    hl_pit_teams = {h["team"] for h in highlights if h["type"] in ("no_hitter", "perfect_game", "pit_explosion")}
+    hl_pit_teams = {h["team"] for h in highlights if h["type"] in ("no_hitter", "perfect_game", "complete_game", "pit_explosion")}
     hl_bat_teams = {h["team"] for h in highlights if h["type"] == "offense"}
 
     cards = ""
@@ -373,7 +380,7 @@ def render_scores_html(scores: list, highlights: list) -> str:
         if winner in hl_pit_teams:
             border_clr = "#D8500F"
             for h in highlights:
-                if h["type"] in ("no_hitter", "perfect_game", "pit_explosion") and h["team"] == winner:
+                if h["type"] in ("no_hitter", "perfect_game", "complete_game", "pit_explosion") and h["team"] == winner:
                     note += f" &middot; {h['badge']}"
         elif s["top_team"] in hl_bat_teams or s["bot_team"] in hl_bat_teams:
             border_clr = "#0F9D63"
