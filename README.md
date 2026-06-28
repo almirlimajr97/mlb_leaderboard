@@ -18,6 +18,7 @@ A terminal-style leaderboard (dark mode, dense, data-driven) with batting and pi
 - **Interactive sorting** on any table column
 - **Light/dark theme** toggle
 - **Performance**: data partitioned by season and lazy-loaded on demand
+- **Daily email report**: automated HTML newsletter delivered every morning with the previous day's scores, pitching leaders (innings pitched, strikeouts), batting leaders (hits, home runs, RBI), and special highlights (no-hitters, perfect games, offensive explosions)
 
 ## Architecture
 
@@ -28,7 +29,8 @@ mlb_statleaders/
 ├── scripts/
 │   ├── fetch_data.py        # Collects play-by-play from the MLB Stats API
 │   ├── build_stats.py       # Aggregates raw data into batting/pitching cubes
-│   └── build_html.py        # Generates the dashboard (HTML + JSON per season)
+│   ├── build_html.py        # Generates the dashboard (HTML + JSON per season)
+│   └── send_report.py       # Generates and sends the daily email report via Resend
 ├── data/
 │   ├── raw/                 # One Parquet file per date, pitch/baserunning granularity
 │   ├── df_batters_<season>.parquet
@@ -50,12 +52,15 @@ mlb_statleaders/
 
 3. **`build_html.py`** reads the aggregates and generates the dashboard: the HTML fetches only the selected season on demand, keeping the initial payload light even with multiple years of history.
 
-The GitHub Actions workflow runs daily, collecting the previous day, re-aggregating the full history, and republishing the site. Manual reprocessing (date range) can be triggered via `workflow_dispatch`.
+4. **`send_report.py`** reads the raw data for the previous day, computes per-game stats, detects highlights (no-hitters, perfect games, offensive explosions), and sends an HTML email report via [Resend](https://resend.com).
+
+The GitHub Actions workflow runs daily, collecting the previous day, re-aggregating the full history, republishing the site, and sending the email report. Manual reprocessing (date range) can be triggered via `workflow_dispatch`.
 
 ## Stack
 
 - **Collection & processing**: Python, pandas, requests, PyArrow (Parquet)
 - **Front-end**: vanilla HTML/CSS/JS, no framework — JetBrains Mono for tabular data, Inter for UI
+- **Email delivery**: Resend API
 - **Automation**: GitHub Actions
 - **Hosting**: GitHub Pages
 
