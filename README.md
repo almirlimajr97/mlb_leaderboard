@@ -18,7 +18,7 @@ A terminal-style leaderboard (dark mode, dense, data-driven) with batting and pi
 - **Interactive sorting** on any table column
 - **Light/dark theme** toggle
 - **Performance**: data partitioned by season and lazy-loaded on demand
-- **Daily email report**: automated HTML newsletter delivered every morning with the previous day's scores, pitching leaders (innings pitched, strikeouts), batting leaders (hits, home runs, RBI), and special highlights (no-hitters, perfect games, offensive explosions)
+- **Daily email report**: automated HTML newsletter delivered every morning with the previous day's scores, pitching leaders (innings pitched, strikeouts), batting leaders (hits, home runs, RBI), and special highlights (no-hitters, perfect games, pitching explosions ≥ 10 K, offensive explosions ≥ 3 HR or ≥ 8 RBI)
 
 ## Architecture
 
