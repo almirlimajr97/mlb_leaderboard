@@ -58,13 +58,14 @@ def get_scores(game_date: str) -> list:
         winner     = home_name if home_score > away_score else away_name
 
         scores.append({
-            "top_team":    away_name,
-            "top_score":   away_score,
-            "bot_team":    home_name,
-            "bot_score":   home_score,
-            "winner":      winner,
-            "venue":       g.get("venue", {}).get("name", ""),
-            "innings":     innings,
+            "top_team":  away_name,
+            "top_score": away_score,
+            "bot_team":  home_name,
+            "bot_score": home_score,
+            "winner":    winner,
+            "venue":     g.get("venue", {}).get("name", ""),
+            "innings":   innings,
+            "game_type": g.get("gameType", "R"),
         })
 
     return scores
@@ -404,8 +405,10 @@ def render_scores_html(scores: list, highlights: list) -> str:
 
 def build_html(game_date: str, scores: list, bat_agg: pd.DataFrame,
                pit_agg: pd.DataFrame, highlights: list) -> str:
-    n_games  = len(scores)
-    date_fmt = pd.Timestamp(game_date).strftime("%b %d, %Y")
+    n_games    = len(scores)
+    date_fmt   = pd.Timestamp(game_date).strftime("%b %d, %Y")
+    game_types = {s["game_type"] for s in scores}
+    season_lbl = "Regular Season" if game_types == {"R"} else "Playoffs"
 
     s_highlights = render_highlights_html(highlights)
     s_pit_ip     = render_section("Pitching — innings pitched", rows_pit_ip(pit_agg, highlights))
@@ -442,7 +445,7 @@ def build_html(game_date: str, scores: list, bat_agg: pd.DataFrame,
   <div style="background:#FFFFFF;border:1px solid #E2E0DA;border-top:none;border-radius:0 0 12px 12px;padding:24px 28px;">
 
     <span style="display:inline-block;background:#FBFAF8;border:1px solid #E2E0DA;border-radius:4px;
-      padding:2px 8px;font-size:11px;color:#6B7280;margin-bottom:20px;{S['mono']}">{date_fmt} &mdash; Regular Season</span>
+      padding:2px 8px;font-size:11px;color:#6B7280;margin-bottom:20px;{S['mono']}">{date_fmt} &mdash; {season_lbl}</span>
 
     {s_highlights}
     {pit_block}
