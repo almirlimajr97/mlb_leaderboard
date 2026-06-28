@@ -414,7 +414,7 @@ def build_html(game_date: str, scores: list, bat_agg: pd.DataFrame,
     s_pit_ip     = render_section("Pitching — innings pitched", rows_pit_ip(pit_agg, highlights))
     s_pit_k      = render_section("Pitching — strikeouts",      rows_pit_k(pit_agg, highlights))
     s_bat_h      = render_section("Batting — hits",             rows_bat_h(bat_agg, highlights))
-    s_bat_hr     = render_section("Batting — home runs (sorted by RBI)", rows_bat_hr(bat_agg, highlights))
+    s_bat_hr     = render_section("Batting — home runs",        rows_bat_hr(bat_agg, highlights))
     s_bat_rbi    = render_section("Batting — RBI",              rows_bat_rbi(bat_agg, highlights))
     s_scores     = render_scores_html(scores, highlights)
 
