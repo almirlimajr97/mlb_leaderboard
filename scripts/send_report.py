@@ -279,8 +279,8 @@ def rows_pit_ip(pit_agg: pd.DataFrame, highlights: list) -> str:
         i+1,
         f'{r["pitcher"]}{pitcher_badge(r["pitcher"], highlights)}',
         r["fielding_team"],
-        r["IP"],
-        f'IP &middot; {int(r["SO"])} K &middot; {int(r["H"])} H',
+        f'{r["IP"]} IP',
+        f'{int(r["SO"])} K &middot; {int(r["H"])} H',
         last=(i == len(top)-1)
     ) for i, r in top.iterrows())
 
@@ -291,7 +291,7 @@ def rows_pit_k(pit_agg: pd.DataFrame, highlights: list) -> str:
     top = pit_agg.sort_values(["SO", "ip_val"], ascending=[False, False]).head(3).reset_index(drop=True)
     return "".join(render_row(
         i+1, r["pitcher"], r["fielding_team"],
-        str(int(r["SO"])), f'K &middot; {r["IP"]} IP',
+        f'{int(r["SO"])} K', f'{r["IP"]} IP',
         last=(i == len(top)-1)
     ) for i, r in top.iterrows())
 
@@ -299,13 +299,13 @@ def rows_pit_k(pit_agg: pd.DataFrame, highlights: list) -> str:
 def rows_bat_h(bat_agg: pd.DataFrame, highlights: list) -> str:
     if bat_agg.empty:
         return ""
-    top = bat_agg.sort_values(["H", "HR"], ascending=[False, False]).head(3).reset_index(drop=True)
+    top = bat_agg.sort_values(["H", "AB"], ascending=[False, True]).head(3).reset_index(drop=True)
     return "".join(render_row(
         i+1,
         f'{r["batter"]}{offense_badge(r["batter"], highlights)}',
         r["batting_team"],
-        str(int(r["H"])),
-        f'H &middot; {int(r["AB"])} AB &middot; {int(r["HR"])} HR',
+        f'{int(r["H"])} H',
+        f'{int(r["AB"])} AB &middot; {int(r["HR"])} HR',
         last=(i == len(top)-1)
     ) for i, r in top.iterrows())
 
@@ -336,8 +336,8 @@ def rows_bat_rbi(bat_agg: pd.DataFrame, highlights: list) -> str:
         i+1,
         f'{r["batter"]}{offense_badge(r["batter"], highlights)}',
         r["batting_team"],
-        str(int(r["RBI"])),
-        f'RBI &middot; {int(r["HR"])} HR',
+        f'{int(r["RBI"])} RBI',
+        f'{int(r["HR"])} HR',
         last=(i == len(top)-1)
     ) for i, r in top.iterrows())
 
