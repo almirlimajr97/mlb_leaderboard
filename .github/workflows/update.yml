@@ -119,3 +119,11 @@ jobs:
             exit 1
           fi
           git push
+
+      - name: Enviar report diário por e-mail
+        run: |
+          DATE=$(python3 -c "from datetime import date, timedelta; print((date.today() - timedelta(days=1)).strftime('%Y-%m-%d'))")
+          python scripts/send_report.py --date "$DATE"
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL:   ${{ secrets.REPORT_EMAIL }}
