@@ -150,8 +150,8 @@ def detect_highlights(bat_agg: pd.DataFrame, pit_agg: pd.DataFrame) -> list:
 
     if not pit_agg.empty:
         for _, row in pit_agg.iterrows():
-            if row["ip_val"] >= 9 and row["H"] == 0:
-                if row["BB"] == 0 and row["IBB"] == 0 and row["HBP"] == 0:
+            if row["ip_val"] == 9 and row["H"] == 0:
+                if row["BB"] == 0 and row["IBB"] == 0 and row["HBP"] == 0 and row["BF"] == 27:
                     highlights.append({
                         "type": "perfect_game", "label": "Perfect game",
                         "badge": "PERFECT GAME", "color": "pitching",
@@ -165,7 +165,7 @@ def detect_highlights(bat_agg: pd.DataFrame, pit_agg: pd.DataFrame) -> list:
                         "detail": f"{row['pitcher']} ({row['fielding_team']}) — {row['IP']} IP, 0 H, 0 ER, {int(row['SO'])} K",
                         "pitcher": row["pitcher"], "team": row["fielding_team"],
                     })
-            elif row["ip_val"] >= 9:
+            elif row["ip_val"] == 9:
                 highlights.append({
                     "type": "complete_game", "label": "Complete game",
                     "badge": "CG", "color": "pitching",
