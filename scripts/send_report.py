@@ -78,6 +78,24 @@ HITS        = ["Single", "Double", "Triple", "Home Run"]
 EXCLUDE_PA  = "Pickoff|Caught Stealing|Runner Out|Balk|Wild Pitch|Stolen Base"
 
 
+def calc_total_outs(df: pd.DataFrame) -> pd.DataFrame:
+    """Replica a lógica de build_stats.py para calcular total_outs por linha."""
+    is_cs_or_ro = df["event"].str.contains("Caught Stealing|Runner Out", na=False)
+    is_pickoff_out = df["event"].str.contains("Pickoff", na=False) & (df["is_out"] == True)
+    conditions = [
+        df["event"].str.contains("Double Play|Triple Play", na=False),
+        df["event"].str.contains("Grounded Into DP", na=False),
+        (df["record_type"] == "baserunning") & (is_cs_or_ro | is_pickoff_out),
+        (df["record_type"] == "pitch") & (df["is_out"] == True),
+    ]
+    df = df.copy()
+    df["total_outs"] = pd.Series(
+        __import__("numpy").select(conditions, [3, 2, 1, 1], default=0),
+        index=df.index
+    )
+    return df
+
+
 def load_day_stats(game_date: str):
     path = RAW_DIR / f"{game_date}.parquet"
     if not path.exists():
@@ -87,6 +105,9 @@ def load_day_stats(game_date: str):
     df = df[df["game_type"].isin(VALID_GAME_TYPES)]
     if df.empty:
         return pd.DataFrame(), pd.DataFrame()
+
+    # Recalcula total_outs com a lógica correta
+    df = calc_total_outs(df)
 
     # ── Batters ──────────────────────────────────────────────
     bat = df[df["record_type"] == "pitch"].copy()
@@ -128,13 +149,22 @@ def load_day_stats(game_date: str):
             HBP=("is_hbp", "sum"), outs=("total_outs", "sum"),
         ).reset_index()
 
-        # outs de baserunning
+        # Outs de baserunning — agrega por pitcher_id+game_pk pra evitar
+        # dupla contagem, depois soma por pitcher_id
         br = df[df["record_type"] == "baserunning"].copy()
         if not br.empty:
-            br_total = br.groupby("pitcher_id")["total_outs"].sum().reset_index()
-            br_total.columns = ["pitcher_id", "br_outs"]
+            br_total = (
+                br.groupby(["pitcher_id", "game_pk"])["total_outs"]
+                .sum()
+                .reset_index()
+                .groupby("pitcher_id")["total_outs"]
+                .sum()
+                .reset_index()
+                .rename(columns={"total_outs": "br_outs"})
+            )
             pit_agg = pit_agg.merge(br_total, on="pitcher_id", how="left")
             pit_agg["outs"] = pit_agg["outs"] + pit_agg["br_outs"].fillna(0)
+            pit_agg = pit_agg.drop(columns=["br_outs"])
 
         pit_agg["ip_outs"] = pit_agg["outs"].astype(int)
         pit_agg["ip_val"]  = pit_agg["ip_outs"] / 3
