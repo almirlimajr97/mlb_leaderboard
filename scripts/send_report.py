@@ -208,6 +208,7 @@ def detect_highlights(bat_agg: pd.DataFrame, pit_agg: pd.DataFrame) -> list:
                     "badge": f"{int(row['SO'])} K", "color": "pitching",
                     "detail": f"{row['pitcher']} ({row['fielding_team']}) — {int(row['SO'])} K in {row['IP']} IP",
                     "pitcher": row["pitcher"], "team": row["fielding_team"],
+                    "so": int(row["SO"]), "ip": row["IP"],
                 })
 
     if not bat_agg.empty:
@@ -411,7 +412,10 @@ def render_scores_html(scores: list, highlights: list) -> str:
             border_clr = "#D8500F"
             for h in highlights:
                 if h["type"] in ("no_hitter", "perfect_game", "complete_game", "pit_explosion") and h["team"] == winner:
-                    note += f" &middot; {h['badge']}"
+                    if h["type"] == "pit_explosion":
+                        note += f" &middot; {h['pitcher'].split()[-1]}: {int(h['so'])} K in {h['ip']} IP"
+                    else:
+                        note += f" &middot; {h['badge']}"
         elif s["top_team"] in hl_bat_teams or s["bot_team"] in hl_bat_teams:
             border_clr = "#0F9D63"
             for h in highlights:
